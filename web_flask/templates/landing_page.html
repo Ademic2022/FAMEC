@@ -5,20 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Management App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/landing_page.css')  }}">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <div class="logo">Your App Logo</div>
-        <nav>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <section id="home">
+            <header id="header" >
+                <div class="logo">App Logo</div>
+                <nav class="navigation">
+                    <ul>
+                        <li><a class="nav-btn" href="#home" class="active" style="--i:1;">Features</a></li>
+                        <li><a class="nav-btn"  href="#how-it-works" style="--i:2;">How It Works</a></li>
+                        <li><a class="nav-btn"  href="#pricing" style="--i:3;">Pricing</a></li>
+                        <li><a class="nav-btn"  href="#blog" style="--i:4;">Blog</a></li>
+                        <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="loginBtn">login</button>
+            </header>
+        <div class="owl-carousel owl-theme">
+            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[0] }}');">
+                <div class="slide-1"></div>
+                <div class="section-article">
+                    <h1>Organize Your Home</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
+                    <button>Learn</button>
+                </div>
+            </div>
+            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[1] }}');">
+                <div class="section-article">
+                    <h1>Let us plan your home</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
+                    <button>Learn</button>
+                </div>
+            </div>
+            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[2] }}');">
+                <div class="section-article">
+                    <h1>learn about us</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
+                    <button>Learn</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="hero">
         <div class="hero-content">
@@ -26,7 +57,7 @@
             <p></p>
             <a href="#" class="cta-button">Get Started</a>
         </div>
-        <img src="hero-image.jpg" alt="Happy Family at Home">
+        <!-- <img src="hero-image.jpg" alt="Happy Family at Home"> -->
     </section>
 
     <section id="features" class="features">
@@ -52,19 +83,26 @@
     <footer>
         <nav>
             <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#features" style="--i:1;">Features</a></li>
+                <li><a href="#how-it-works" style="--i:2;">How It Works</a></li>
+                <li><a href="#pricing" style="--i:3;">Pricing</a></li>
+                <li><a href="#blog" style="--i:4;">Blog</a></li>
+                <li><a href="#contact" style="--i:5;">Contact</a></li>
             </ul>
         </nav>
-        <div class="social-icons">
+        <!-- <div class="social-icons">
             <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
             <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
             <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-        </div>
+        </div> -->
         <p>&copy; 2023 Your Home Management App. All rights reserved.</p>
     </footer>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Owl Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- custom javascript -->
+    <script src="{{ url_for('static', filename='scripts/index.js')  }}"></script>
+    <!-- <script src="web_flask/static/scripts/index.js"></script> -->
 </body>
 </html>
