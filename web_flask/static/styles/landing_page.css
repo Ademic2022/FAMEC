@@ -194,6 +194,7 @@ OWL CAROUSEL
     color: #fff !important;
     font-size: 80px !important;
     font-weight: bolder !important;
+    background: none !important;
 }
 .owl-prev{
     left: 1px;
