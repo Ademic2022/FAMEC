@@ -55,9 +55,9 @@ $(document).ready(function(){
         nav:true,
         dots:true,
         autoplay:true,
-        autoplaySpeed:1000,
+        autoplaySpeed:3000,
         smartSpeed:1500,
-        autoplayHoverPause:false
+        autoplayHoverPause:true
     });
 });
 /*******************************************************************************************/

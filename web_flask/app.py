@@ -8,7 +8,10 @@ def hello_world():
     background_image_urls = [
         url_for('static', filename='images/home1.jpg'),
         url_for('static', filename='images/home2.jpg'),
-        url_for('static', filename='images/home3.jpg')
+        url_for('static', filename='images/home3.jpg'),
+        url_for('static', filename='images/hma_banner.jpg'),
+        url_for('static', filename='images/hma3.jpg'),
+        url_for('static', filename='images/hma1.jpg')
     ]
     return render_template('landing_page.html', images = background_image_urls)
 
