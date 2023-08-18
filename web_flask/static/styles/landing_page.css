@@ -225,52 +225,27 @@ header.height .logo {
     opacity: 0;
     animation: slideRight 1s ease forwards;
 }
+/* 
+======================================================================================
+END OF LOGO
+======================================================================================
+*/
 
-
-
-
-
-
-
-
-
-/* Hero section styling */
-.hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    background-color: #6b7c93;
-    margin-top: 80px;
+/* 
+======================================================================================
+PRICING STYLES
+======================================================================================
+*/
+#pricing{
     height: 100vh;
+    color: #fff;
+    text-align: center;
 }
-
-.hero-content {
-    max-width: 50%;
-}
-
-.hero h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 18px;
-    color: #6b7c93;
-    margin-bottom: 30px;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Add more styling for other sections as needed */
+/* 
+======================================================================================
+END OF PRICING STYLES
+======================================================================================
+*/
 
 
 /* 
@@ -368,3 +343,8 @@ Keyframe Animations
         transform: translate(-50%, -50%) translateY(10px);
     }
 }
+/* 
+======================================================================================
+END OF Keyframe Animations
+======================================================================================
+*/
