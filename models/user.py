@@ -1,10 +1,13 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from models.engine import db_storage as db
+#!/usr/bin/venv python3
+from base_model import Base, BaseModel
+from sqlalchemy import Column, String, Integer
+# import models
+# import sqlalchemy
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    email = db.Column(db.String(255), unique=True)
-    password = db.Column(db.String(128))
+
+class User(BaseModel, Base):
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255))
+    email = Column(String(255), unique=True)
+    password = Column(String(128))

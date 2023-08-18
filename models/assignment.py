@@ -1,7 +1,7 @@
 from .base_model import BaseModel
-from models.engine import db_storage as db
+from sqlalchemy import Column, DateTime, ForeignKey, Integer
 
 class Assignment(BaseModel):
-    task_id = db.Column(db.Integer, db.ForeignKey('tasks.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    due_date = db.Column(db.DateTime)
+    task_id = Column(Integer, ForeignKey('tasks.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
+    due_date = Column(DateTime)
