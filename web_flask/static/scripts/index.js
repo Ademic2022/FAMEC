@@ -18,21 +18,29 @@ window.addEventListener("scroll", () => {
 // ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
 /*******************************************************************************************/
 window.addEventListener('scroll', function() {
-    var navButtons = document.querySelectorAll('.nav-btn');
-    var sections = document.querySelectorAll('section');
-  
-    sections.forEach(function(section, index) {
-      var rect = section.getBoundingClientRect();
-      if ((rect.top <= 1 && rect.top <= window.innerHeight) || window.scrollY === 0) {
-        navButtons.forEach(function(btn) {
-          btn.classList.remove('active');
-        });
-        if (navButtons[index]) {
-          navButtons[index].classList.add('active');
-        }
+  var navButtons = document.querySelectorAll('.nav-btn');
+  var sections = document.querySelectorAll('section');
+
+  sections.forEach(function(section, index) {
+    var rect = section.getBoundingClientRect();
+    if ((rect.top <= window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) {
+      navButtons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      if (navButtons[index]) {
+        navButtons[index].classList.add('active');
       }
-    });
+    }
   });
+  
+  // Remove active class from all navigation buttons when scrolled back to the top
+  if (window.scrollY === 0) {
+    navButtons.forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+  }
+});
+
   /*******************************************************************************************/
   // END OF ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
   /*******************************************************************************************/

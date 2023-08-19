@@ -13,12 +13,12 @@
 <body>
     <section id="home">
             <header id="header" >
-                <div class="logo">App Logo</div>
+                <div class="logo">HMA</div>
                 <nav class="navigation">
                     <ul>
-                        <li><a class="nav-btn" href="#home" style="--i:1;">Features</a></li>
-                        <li><a class="nav-btn"  href="#pricing" style="--i:2;">How It Works</a></li>
-                        <li><a class="nav-btn"  href="#about" style="--i:3;">Pricing</a></li>
+                        <li><a class="nav-btn" href="#home" style="--i:1;">home</a></li>
+                        <li><a class="nav-btn"  href="#pricing" style="--i:2;">pricing</a></li>
+                        <li><a class="nav-btn"  href="#about" style="--i:3;">about</a></li>
                         <li><a class="nav-btn"  href="#blog" style="--i:4;">Blog</a></li>
                         <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact</a></li>
                     </ul>
@@ -56,22 +56,14 @@
     <section id="about">
         <h1 class="content">This is About</h1>
     </section>
+    <section id="blog">
+        <h1 class="content">Our Blog Post</h1>
+    </section>
+    <section id="contact">
+        <h1 class="content">Contact Us</h1>
+    </section>
     <footer>
-        <nav>
-            <ul>
-                <li><a href="#features" style="--i:1;">Features</a></li>
-                <li><a href="#how-it-works" style="--i:2;">How It Works</a></li>
-                <li><a href="#pricing" style="--i:3;">Pricing</a></li>
-                <li><a href="#blog" style="--i:4;">Blog</a></li>
-                <li><a href="#contact" style="--i:5;">Contact</a></li>
-            </ul>
-        </nav>
-        <!-- <div class="social-icons">
-            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-        </div> -->
-        <p>&copy; 2023 Your Home Management App. All rights reserved.</p>
+        
     </footer>
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -79,6 +71,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- custom javascript -->
     <script src="{{ url_for('static', filename='scripts/index.js')  }}"></script>
-    <!-- <script src="web_flask/static/scripts/index.js"></script> -->
 </body>
 </html>
