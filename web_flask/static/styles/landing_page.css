@@ -88,7 +88,28 @@ header.height a::after {
 header a.active::after {
     transform: scale(1);
 }
-
+.dropdown-content{
+    height: 50%;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    top: 4em;
+    z-index: 1000;
+    display: none;
+}
+.dropdown-content.showDropdown{
+    display: block;
+}
+#dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bx{
+    font-size: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+}
 /* 
 ======================================================================================
 BUTTONS
@@ -302,7 +323,8 @@ BLOG STYLES
     height: 100vh;
     color: #fff;
     text-align: center;
-    background-color:chocolate;
+    background: linear-gradient(90deg, rgba(0,100,0,1) 0%, rgba(249,238,189,1) 100%);
+
 }
 #contact h1 {
     margin: 0;

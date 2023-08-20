@@ -9,6 +9,7 @@
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
 <body>
     <section id="home">
@@ -16,15 +17,20 @@
                 <div class="logo">HMA</div>
                 <nav class="navigation">
                     <ul>
-                        <li><a class="nav-btn" href="#home" style="--i:1;">home</a></li>
-                        <li><a class="nav-btn"  href="#pricing" style="--i:2;">pricing</a></li>
-                        <li><a class="nav-btn"  href="#about" style="--i:3;">about</a></li>
+                        <li><a class="nav-btn" href="#features" style="--i:1;" id="dropdown">features <span><i class='bx bx-chevron-down'></i></span></a></li>
+                        <li><a class="nav-btn"  href="#about" style="--i:2;">about us</a></li>
+                        <li><a class="nav-btn"  href="#services" style="--i:3;">services</a></li>
+                        <!-- <li><a class="nav-btn"  href="#plans" style="--i:3;">plans</a></li> -->
                         <li><a class="nav-btn"  href="#blog" style="--i:4;">Blog</a></li>
-                        <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact</a></li>
+                        <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact us</a></li>
                     </ul>
                 </nav>
-                <button class="loginBtn">login</button>
+                <button class="loginBtn">Get Started</button>
             </header>
+        <div class="dropdown-content" id="featureDropdown">
+            <h3>item1</h3>
+            <h3>item2</h3>
+        </div>
         <div class="owl-carousel owl-theme">
             <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[0] }}');">
                 <div class="slide-1"></div>

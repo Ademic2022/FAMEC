@@ -63,3 +63,13 @@ $(document).ready(function(){
 /*******************************************************************************************/
 // END OF OWL CAROUSEL // 
 /*******************************************************************************************/
+
+/*******************************************************************************************/
+// Feature Navigation Dropdown // 
+/*******************************************************************************************/
+const features =  document.querySelector('#dropdown');
+features.addEventListener('click', ()=>{
+  let featureDropdown = document.querySelector('#featureDropdown')
+  // let bx = document.querySelector('.bx')
+  featureDropdown.classList.toggle('showDropdown')
+})
