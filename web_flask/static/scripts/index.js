@@ -23,8 +23,7 @@ window.addEventListener('scroll', function() {
 
   sections.forEach(function(section, index) {
     var rect = section.getBoundingClientRect();
-    if ((rect.top <= window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) {
-      navButtons.forEach(function(btn) {
+    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) {      navButtons.forEach(function(btn) {
         btn.classList.remove('active');
       });
       if (navButtons[index]) {
@@ -55,21 +54,23 @@ $(document).ready(function(){
         nav:true,
         dots:true,
         autoplay:true,
-        autoplaySpeed:3000,
+        autoplaySpeed:1000,
         smartSpeed:1500,
-        autoplayHoverPause:true
+        autoplayHoverPause:false
     });
 });
 /*******************************************************************************************/
 // END OF OWL CAROUSEL // 
 /*******************************************************************************************/
-
 /*******************************************************************************************/
 // Feature Navigation Dropdown // 
 /*******************************************************************************************/
 const features =  document.querySelector('#dropdown');
 features.addEventListener('click', ()=>{
   let featureDropdown = document.querySelector('#featureDropdown')
-  // let bx = document.querySelector('.bx')
+  let bx = document.querySelector('.bx')
   featureDropdown.classList.toggle('showDropdown')
+  if(bx.classList.contains('bx-chevron-down')){
+    bx.classList.toggle('bx-chevron-up')
+  }
 })
