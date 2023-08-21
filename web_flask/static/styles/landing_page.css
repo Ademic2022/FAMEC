@@ -397,8 +397,50 @@ ABOUT STYLES
     text-align: center;
     background-color: #089223;
 }
-#about h1{
-    margin: 0;
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 15%;
+    background-color: #c6c2c2;
+    height: 85%;
+    width: 100%;
+    gap: 6px;
+    align-content: stretch;
+
+}
+.about-sections{
+    display: flex;
+    height: 85%;
+    width: calc(98.98% / 3);
+    background-color: #16381c;
+    border-radius: 10px;
+}
+.about-sections:nth-child(1){
+    flex-direction: column;
+    width: 100%;
+    height: 12%;
+    background-color: #fff;
+}
+.about-sections:nth-child(1) h1 {
+    color: #000;
+    margin: auto;
+    text-transform: capitalize;
+    font-family: fantasy;
+}
+.about-sections-contents {
+    background-color: #454444;
+    width: 100%;
+    margin: 3%;
+    border-radius: 10px;
+}
+.about-sections-contents h4 {
+    font-family: fantasy;
+    font-size: larger;
+}
+.about-sections-contents p {
+    font-family: serif;
+    line-height: 30px;
 }
 /* 
 ======================================================================================
