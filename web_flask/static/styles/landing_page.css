@@ -91,6 +91,159 @@ header a.active::after {
 
 /* 
 ======================================================================================
+FEATURE DROPDOWN 
+======================================================================================
+*/
+.dropdown-content{
+    height: 55%;
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 5em;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    animation: slideBottom 1s ease forwards;
+    animation-delay: .1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.dropdown-content.showDropdown{
+    display: block;
+}
+#dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bx{
+    font-size: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.features-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* background-color: aquamarine; */
+}
+.features-menu {
+    display: flex;
+    /* justify-content: space-around; */
+    width: 65%;
+    background-color: #fff;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 0 30px 30px 30px;
+}
+.feature-content {
+    width: 32.7%;
+    height: fit-content;
+    padding: 10px;
+    align-items: flex-start;
+    border-radius: 10px;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+.feature-content:hover {
+    background-color: #F9EEBD;
+}
+.feature-content:nth-child(1) {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    margin-top: 5px;
+    order: 0;
+    width: 100%;
+    height:50px;
+    background-color: #fff;
+}
+.feature-content:nth-child(1) h4 {
+    text-transform: capitalize;
+    margin-top: 10px;
+    font-family:fantasy;
+    font-weight: 800;
+    font-size: larger;
+}
+.feature-content:nth-child(1) hr {
+    margin-top: 2px;
+    border-bottom: none;
+    border-color: #ffffff;
+}
+.feature-content a {
+    text-decoration: none;
+    color: #fff;
+}
+.feature-content h4 {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-family: fantasy;
+    text-transform: capitalize;
+    color: #162938;
+}
+.feature-content .bx{
+    font-size: 18px;
+    padding-bottom: 4px !important;
+    margin-right: 6px !important;
+}
+.feature-content p {
+    margin: 5px 0;
+    font-size: 15.5px;
+    font-family: serif;
+    color: #162938;
+}
+.more-features {
+    width: 35%;
+    background-color: #638454;
+}
+.more-features-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 30px 15px;
+    height: 100%;
+}
+.more-features-content p {
+    font-family: serif;
+    color: #fff;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+}
+.more-features-content button {
+    width: 150px;
+    height: 50px;
+    background: #c6c2c2;
+    border: 2px solid #F9EEBD;
+    outline: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    color: #454444;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: zoomIn 1s ease forwards;
+    animation-delay: .2s;
+}
+.more-features-content button:hover {
+    background-color: #006400;
+    color: #fff;
+}
+.more-feature-title h4 {
+    margin-bottom: -5px;
+    font-family: fantasy;
+    text-transform: capitalize;
+    font-weight: 800;
+    font-size: larger;
+    color: #fff;
+}
+/* 
+======================================================================================
+END OF FEATURE DROPDOWN
+======================================================================================
+*/
+/* 
+======================================================================================
 BUTTONS
 ======================================================================================
 */
@@ -129,7 +282,7 @@ header.height .loginBtn:hover {
     background: #162938;
     color: #fff;
 }
-header a:hover::after{
+.navigation a:hover::after{
     transform: scale(1);
     transform-origin: left;
 }
@@ -233,27 +386,6 @@ header.height .logo {
 END OF LOGO
 ======================================================================================
 */
-
-/* 
-======================================================================================
-PRICING STYLES
-======================================================================================
-*/
-#pricing{
-    height: 100vh;
-    color: #fff;
-    text-align: center;
-    background-color: #162938;
-}
-#pricing h1{
-    margin: 0;
-}
-/* 
-======================================================================================
-END OF PRICING STYLES
-======================================================================================
-*/
-
 /* 
 ======================================================================================
 ABOUT STYLES
@@ -263,9 +395,9 @@ ABOUT STYLES
     height: 100vh;
     color: #fff;
     text-align: center;
-    background-color: #06b9f7;
+    background-color: #089223;
 }
-#about h1 {
+#about h1{
     margin: 0;
 }
 /* 
@@ -275,6 +407,26 @@ END OF ABOUT STYLES
 */
 /* 
 ======================================================================================
+SERVICES STYLES
+======================================================================================
+*/
+#services{
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+    background-color: #162938;
+}
+#services h1{
+    margin: 0;
+}
+/* 
+======================================================================================
+END OF SERVICES STYLES
+======================================================================================
+*/
+
+/* 
+======================================================================================
 BLOG STYLES
 ======================================================================================
 */
@@ -282,7 +434,7 @@ BLOG STYLES
     height: 100vh;
     color: #fff;
     text-align: center;
-    background-color: rgb(63, 5, 5);
+    background-color: #06b9f7;
 }
 #blog h1 {
     margin: 0;
@@ -292,26 +444,26 @@ BLOG STYLES
 END OF BLOG STYLES
 ======================================================================================
 */
-
 /* 
 ======================================================================================
-BLOG STYLES
+CONTACT STYLES
 ======================================================================================
 */
 #contact{
     height: 100vh;
     color: #fff;
     text-align: center;
-    background-color:chocolate;
+    background-color: rgb(63, 5, 5);
 }
 #contact h1 {
     margin: 0;
 }
 /* 
 ======================================================================================
-END OF BLOG STYLES
+END OF CONTACT STYLES
 ======================================================================================
 */
+
 /* 
 ======================================================================================
 Keyframe Animations
