@@ -23,7 +23,8 @@ window.addEventListener('scroll', function() {
 
   sections.forEach(function(section, index) {
     var rect = section.getBoundingClientRect();
-    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) {      navButtons.forEach(function(btn) {
+    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) { 
+        navButtons.forEach(function(btn) {
         btn.classList.remove('active');
       });
       if (navButtons[index]) {
