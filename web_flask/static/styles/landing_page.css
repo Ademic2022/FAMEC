@@ -36,7 +36,6 @@ header.height {
     transition: 1s ease-in;
     box-shadow: 3px #162938;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* border-bottom: 1px solid #162938; */
 }
 
 header ul {
@@ -128,7 +127,6 @@ FEATURE DROPDOWN
 }
 .features-menu {
     display: flex;
-    /* justify-content: space-around; */
     width: 65%;
     background-color: #fff;
     gap: 6px;
@@ -392,13 +390,85 @@ ABOUT STYLES
 ======================================================================================
 */
 #about{
-    height: 100vh;
+    height: 158vh;
     color: #fff;
     text-align: center;
     background-color: #089223;
 }
-#about h1{
-    margin: 0;
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 9.3%;
+    /* background-color: #c6c2c2; */
+    height: 85%;
+    width: 100%;
+    gap: 6px;
+    align-content: stretch;
+
+}
+.about-sections{
+    display: flex;
+    /* height: 85%; */
+    width: calc(98.98% / 3);
+    background-color: #D0DB61;
+    border-radius: 10px;
+}
+.about-sections:nth-child(1){
+    flex-direction: column;
+    width: 100%;
+    height: 5%;
+    background-color: #fff;
+}
+.about-sections:nth-child(1) h1 {
+    color: #000;
+    margin: auto;
+    text-transform: capitalize;
+    font-family: fantasy;
+}
+.about-sections:nth-child(2){
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 50%;
+    background-color: #089223;
+    color: #000;
+}
+.about-sections:nth-child(2) .about-hma {
+    width: 65%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.about-sections:nth-child(2) .about-hma h2 {
+    font-family: fantasy;
+}
+.about-sections:nth-child(2) .about-hma p {
+    font-family: serif;
+    font-size: 18px;
+    line-height: 40px;
+}
+.about-sections:nth-child(2) .about-hma:nth-child(1) {
+    width: 35%;
+    background-size: contain !important;
+}
+.about-sections-contents {
+    background-color: #fff;
+    width: 100%;
+    margin: 3%;
+    border-radius: 10px;
+    color: #000;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+}
+.about-sections-contents h4 {
+    font-family: fantasy;
+    font-size: larger;
+}
+.about-sections-contents p {
+    font-family: serif;
+    line-height: 30px;
 }
 /* 
 ======================================================================================
@@ -435,9 +505,13 @@ BLOG STYLES
     color: #fff;
     text-align: center;
     background-color: #06b9f7;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #blog h1 {
-    margin: 0;
+    margin: auto;
 }
 /* 
 ======================================================================================

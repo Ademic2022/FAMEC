@@ -1,0 +1,9 @@
+div.dived{
+    height: 20px;
+    width: 100px;
+    /* background: brown; */
+    border: 2px solid #000;
+    /* border-top: none ; */
+    border-left: none;
+    border-right: none;
+}

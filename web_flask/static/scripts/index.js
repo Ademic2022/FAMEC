@@ -23,7 +23,8 @@ window.addEventListener('scroll', function() {
 
   sections.forEach(function(section, index) {
     var rect = section.getBoundingClientRect();
-    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) {      navButtons.forEach(function(btn) {
+    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) { 
+        navButtons.forEach(function(btn) {
         btn.classList.remove('active');
       });
       if (navButtons[index]) {
@@ -40,9 +41,30 @@ window.addEventListener('scroll', function() {
   }
 });
 
-  /*******************************************************************************************/
-  // END OF ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
-  /*******************************************************************************************/
+/*******************************************************************************************/
+// END OF ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
+/*******************************************************************************************/
+
+/*******************************************************************************************/
+// PAGE SMOOTH SCROLL // 
+/*******************************************************************************************/
+var navLinks = document.querySelectorAll('a.nav-btn');
+navLinks.forEach((links)=>{
+  links.addEventListener('click', (e)=>{
+    e.preventDefault();
+    var target = document.querySelector(links.getAttribute('href'));
+    if(target.getAttribute('id' === 'home')){
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    else{
+      target.scrollIntoView({behavior:'smooth'})
+    }
+  });
+});
+/*******************************************************************************************/
+// END OF PAGE SMOOTH SCROLL // 
+/*******************************************************************************************/
+
 
 /*******************************************************************************************/
 // OWL CAROUSEL // 
