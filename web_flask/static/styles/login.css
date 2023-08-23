@@ -33,7 +33,7 @@ LOGIN CASCADING
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: #fff;
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
     padding-top: 100px;
     top: 0;
     left:0;
