@@ -249,7 +249,7 @@ END OF FEATURE DROPDOWN
 BUTTONS
 ======================================================================================
 */
-header .loginBtn, .section-content .section-article button {
+header .loginBtn, .section-content .section-article button, form .contact-btn {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -275,7 +275,7 @@ header.height .loginBtn {
     animation-delay: .1s;
 }
 
-header .loginBtn:hover, .section-content .section-article button:hover {
+header .loginBtn:hover, .section-content .section-article button:hover, form .contact-btn:hover {
     background: #fff;
     color: #162938;
 }
@@ -528,13 +528,131 @@ CONTACT STYLES
 ======================================================================================
 */
 #contact{
-    height: 100vh;
+    height: max-content;
     color: #fff;
     text-align: center;
-    background-color: rgb(63, 5, 5);
+    /* background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F); */
+    background-color: #FFD1DC;
+    padding-bottom: 10px;
 }
-#contact h1 {
+.contact-container{
+    display: flex;
+    /* background-color: #fff; */
+    height: 100%;
+    /* gap: 6px; */
+    position: relative;
+    top: 15%;
+}
+.contact-sections {
+    width: 45%;
+    /* height: 100%; */
+    height: auto;
+    /* background-color: #858585; */
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-sections:nth-child(2) {
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
+    width: 55%;
+    height: fit-content;
+}
+.contact-page {
+    width: 85%;
+    height: 85%;
+    /* background-color: #000; */
+    margin: 50px;
+}
+.contact-us-title {
+    display: flex;
+}
+.form-container {
+    display: flex;
+    /* background-color: #089223; */
+    height: 90.8%;
+    width: 100%;
+}
+.form-container span{
+    color: red;
+    font-size: 20px;
+}
+form {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+form .name, form .email, form .phone, form .message {
+    display: flex;
+    gap: 6px;
+}
+form .email, form .message{
+    gap: 0;
+}
+.name .firstname, .name .lastname, 
+form .email, .phone .country, 
+.phone .phone-number, form .message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 10px 0;
+}
+.name .firstname input, .name .lastname input, 
+.email input, .phone .country input, 
+.phone .phone-number input, .message textarea{
+    width: 100%;
+    height: 40px;
+    font-size: larger;
+    padding: 10px;
+    font-family: serif;
+    color: #6f6f6f;
+    border-radius: 5px;
+}
+.message textarea {
+    height: 90px;
+}
+form .contact-btn {
+    float: left;
     margin: 0;
+    width: 40%;
+}
+.connect .icon-share{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50%;
+}
+.connect .icon-share i {
+    font-size: 35px;
+}
+.connect-icon a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    margin: 30px 15px 30px 0;
+    transition: .5s ease;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+
+.connect-icon a:hover{
+    background: #9b9b9b;
+    color: #162938;
+    box-shadow: 0 0 20px #000000;
 }
 /* 
 ======================================================================================
