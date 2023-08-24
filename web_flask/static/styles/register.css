@@ -1,9 +1,25 @@
-div.dived{
-    height: 20px;
-    width: 100px;
-    /* background: brown; */
-    border: 2px solid #000;
-    /* border-top: none ; */
-    border-left: none;
-    border-right: none;
+/* styles.css */
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/*
+/* 
+======================================================================================
+REGISTRATION CASCADING
+======================================================================================
+*/
+
+.registration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

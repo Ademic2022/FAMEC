@@ -17,24 +17,24 @@ window.addEventListener('scroll', function() {
   } else {
       header.classList.remove("height");
   }
-  sections.forEach(function(section, index) {
-    var rect = section.getBoundingClientRect();
-    if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) { 
-        navButtons.forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-      if (navButtons[index]) {
-        navButtons[index].classList.add('active');
-      }
-    }
-  });
+  // sections.forEach(function(section, index) {
+  //   var rect = section.getBoundingClientRect();
+  //   if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) { 
+  //       navButtons.forEach(function(btn) {
+  //       btn.classList.remove('active');
+  //     });
+  //     if (navButtons[index]) {
+  //       navButtons[index].classList.add('active');
+  //     }
+  //   }
+  // });
   
   // Remove active class from all navigation buttons when scrolled back to the top
-  if (window.scrollY === 0) {
-    navButtons.forEach(function(btn) {
-      btn.classList.remove('active');
-    });
-  }
+  // if (window.scrollY === 0) {
+  //   navButtons.forEach(function(btn) {
+  //     btn.classList.remove('active');
+  //   });
+  // }
   // ADD ANIMATION ON PAGE SCROLL TO VIEWPORT
   sections.forEach((event)=>{
     let top = window.scrollY;

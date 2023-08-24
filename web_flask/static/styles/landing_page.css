@@ -9,7 +9,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* min-height: 100vh; */
 }
 /* ALL SECTION ANIMATION HERE */
 section.show-animate .animate{
@@ -44,6 +43,8 @@ header.height {
 
 header ul {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
     gap: 20px;
 }
@@ -97,48 +98,48 @@ header a.active::after {
 FEATURE DROPDOWN 
 ======================================================================================
 */
-.dropdown-content{
-    /* height: 55%; */
+.dropdown{
     height: max-content;
     background-color: #fff;
     position: fixed;
     width: 100%;
     top: 5em;
     z-index: 1000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     display: none;
     opacity: 0;
     animation: slideBottom 1s ease forwards;
     animation-delay: .1s;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.dropdown-content.showDropdown{
+.dropdown.showDropdown{
     display: block;
 }
 #dropdown{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom-left-radius: 30px;
 }
 .bx{
     font-size: 20px;
     padding: 0 !important;
     margin: 0 !important;
 }
-.features-container {
+.dropdown-container {
     display: flex;
     width: 100%;
     height: 100%;
-    /* background-color: aquamarine; */
 }
-.features-menu {
+.dropdown-menu {
     display: flex;
     width: 65%;
-    background-color: #fff;
     gap: 6px;
     flex-wrap: wrap;
     margin: 0 30px 30px 30px;
 }
-.feature-content {
+.dropdown-content {
     width: 32.7%;
     height: fit-content;
     padding: 10px;
@@ -149,10 +150,10 @@ FEATURE DROPDOWN
     animation: slideRight 1s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.feature-content:hover {
+.dropdown-content:hover {
     background-color: #FFD1DC;
 }
-.feature-content:nth-child(1) {
+.dropdown-content:nth-child(1) {
     display: block;
     flex-grow: 0;
     flex-shrink: 0;
@@ -161,26 +162,24 @@ FEATURE DROPDOWN
     order: 0;
     width: 100%;
     height:50px;
-    background-color: #fff;
 }
-.feature-content:nth-child(1) h4 {
+.dropdown-content:nth-child(1) h4 {
     text-transform: capitalize;
     margin-top: 10px;
     font-family:fantasy;
     font-weight: 800;
     font-size: larger;
 }
-.feature-content:nth-child(1) hr {
+.dropdown-content:nth-child(1) hr {
     margin-top: 2px;
     border-bottom: none;
     border-color: #ffffff;
-    /* margin-bottom: 25px; */
 }
-.feature-content a {
+.dropdown-content a {
     text-decoration: none;
     color: #fff;
 }
-.feature-content h4 {
+.dropdown-content h4 {
     display: flex;
     align-items: center;
     margin: 5px 0;
@@ -188,37 +187,39 @@ FEATURE DROPDOWN
     text-transform: capitalize;
     color: #162938;
 }
-.feature-content .bx{
+.dropdown-content .bx{
     font-size: 18px;
     padding-bottom: 4px !important;
     margin-right: 6px !important;
+    color: #FF91A4;
 }
-.feature-content p {
+.dropdown-content p {
     margin: 5px 0;
     font-size: 15.5px;
     font-family: serif;
     color: #162938;
 }
-.more-features {
+.extend-dropdown {
     width: 35%;
     background-color: #FFD1DC;
+    border-bottom-right-radius: 10px;
 }
-.more-features-content {
+.extend-dropdown-content {
     display: flex;
     flex-direction: column;
     margin: 0 50px 30px 15px;
     height: 100%;
 }
-.more-features-content p {
+.extend-dropdown-content p {
     font-family: serif;
     color: #605e5e;
     opacity: 0;
     animation: slideLeft 1s ease forwards;
 }
-.more-features-content hr {
+.extend-dropdown-content hr {
     border-bottom: none;
 }
-.more-features-content button {
+.extend-dropdown-content button {
     width: 150px;
     height: 50px;
     background: #fff;
@@ -233,11 +234,11 @@ FEATURE DROPDOWN
     animation: zoomIn 1s ease forwards;
     animation-delay: .2s;
 }
-.more-features-content button:hover {
+.extend-dropdown-content button:hover {
     background-color: #FF007F;
     color: #fff;
 }
-.more-feature-title h4 {
+.extend-dropdown-title h4 {
     margin-bottom: -5px;
     font-family: fantasy;
     text-transform: capitalize;
@@ -305,7 +306,6 @@ OWL CAROUSEL
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    /* background: url("web_flask/static/images/home1.jpg") no-repeat; */
     background-size: cover;
     background-position: center;
 }
@@ -401,19 +401,14 @@ ABOUT STYLES
 */
 #about{
     height: max-content;
-    /* height: 155vh; */
     color: #fff;
     text-align: center;
-    /* background-color: #089223; */
     padding-bottom: 10px;
 }
 .about-container {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    /* top: 9.3%; */
-    /* background-color: #c6c2c2; */
-    /* height: 85%; */
     width: 100%;
     gap: 6px;
     align-content: stretch;
@@ -421,17 +416,13 @@ ABOUT STYLES
 }
 .about-sections{
     display: flex;
-    /* height: max-content; */
     width: calc(98.98% / 3);
-    /* background-color: #D0DB61; */
     border-radius: 10px;
 }
 .about-sections:nth-child(1){
     flex-direction: column;
     width: 100%;
     height: 5%;
-    /* background-color: #D0DB61; */
-    /* background-color: #fff; */
 }
 .about-sections:nth-child(1) h1 {
     color: #000;
@@ -442,10 +433,8 @@ ABOUT STYLES
 }
 .about-sections:nth-child(2){
     display: flex;
-    /* gap: 10px; */
     width: 100%;
     height: 50%;
-    /* background-color: #089223; */
     color: #000;
 }
 .about-sections:nth-child(2) .about-hma {
@@ -557,37 +546,30 @@ CONTACT STYLES
     height: max-content;
     color: #fff;
     text-align: center;
-    /* background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F); */
     background-color: #FFD1DC;
     padding-bottom: 10px;
 }
 .contact-container{
     display: flex;
-    /* background-color: #fff; */
     height: 100%;
-    /* gap: 6px; */
     position: relative;
     top: 15%;
 }
 .contact-sections {
     width: 45%;
-    /* height: 100%; */
     height: auto;
-    /* background-color: #858585; */
     background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .contact-sections:nth-child(2) {
-    /* background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F); */
     width: 55%;
     height: fit-content;
 }
 .contact-page {
     width: 85%;
     height: 85%;
-    /* background-color: #000; */
     margin: 50px;
 }
 .contact-us-title {
@@ -595,7 +577,6 @@ CONTACT STYLES
 }
 .form-container {
     display: flex;
-    /* background-color: #089223; */
     height: 90.8%;
     width: 100%;
 }
