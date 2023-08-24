@@ -9,9 +9,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* min-height: 100vh; */
 }
-
+/* ALL SECTION ANIMATION HERE */
+section.show-animate .animate{
+    opacity: 0;
+    animation: zoomIn 1s ease forwards;
+}
 /* 
 ======================================================================================
 NAVIGATION LINKS
@@ -36,11 +39,12 @@ header.height {
     transition: 1s ease-in;
     box-shadow: 3px #162938;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* border-bottom: 1px solid #162938; */
 }
 
 header ul {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
     gap: 20px;
 }
@@ -88,34 +92,171 @@ header.height a::after {
 header a.active::after {
     transform: scale(1);
 }
-.dropdown-content{
-    height: 50%;
+
+/* 
+======================================================================================
+FEATURE DROPDOWN 
+======================================================================================
+*/
+.dropdown{
+    height: max-content;
     background-color: #fff;
-    position: absolute;
+    position: fixed;
     width: 100%;
-    top: 4em;
+    top: 5em;
     z-index: 1000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     display: none;
+    opacity: 0;
+    animation: slideBottom 1s ease forwards;
+    animation-delay: .1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.dropdown-content.showDropdown{
+.dropdown.showDropdown{
     display: block;
 }
 #dropdown{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom-left-radius: 30px;
 }
 .bx{
     font-size: 20px;
     padding: 0 !important;
     margin: 0 !important;
 }
+.dropdown-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.dropdown-menu {
+    display: flex;
+    width: 65%;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 0 30px 30px 30px;
+}
+.dropdown-content {
+    width: 32.7%;
+    height: fit-content;
+    padding: 10px;
+    align-items: flex-start;
+    border-radius: 10px;
+    opacity: 0;
+    margin-bottom: 8px;
+    animation: slideRight 1s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+.dropdown-content:hover {
+    background-color: #FFD1DC;
+}
+.dropdown-content:nth-child(1) {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    margin-top: 5px;
+    order: 0;
+    width: 100%;
+    height:50px;
+}
+.dropdown-content:nth-child(1) h4 {
+    text-transform: capitalize;
+    margin-top: 10px;
+    font-family:fantasy;
+    font-weight: 800;
+    font-size: larger;
+}
+.dropdown-content:nth-child(1) hr {
+    margin-top: 2px;
+    border-bottom: none;
+    border-color: #ffffff;
+}
+.dropdown-content a {
+    text-decoration: none;
+    color: #fff;
+}
+.dropdown-content h4 {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-family: fantasy;
+    text-transform: capitalize;
+    color: #162938;
+}
+.dropdown-content .bx{
+    font-size: 18px;
+    padding-bottom: 4px !important;
+    margin-right: 6px !important;
+    color: #FF91A4;
+}
+.dropdown-content p {
+    margin: 5px 0;
+    font-size: 15.5px;
+    font-family: serif;
+    color: #162938;
+}
+.extend-dropdown {
+    width: 35%;
+    background-color: #FFD1DC;
+    border-bottom-right-radius: 10px;
+}
+.extend-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 30px 15px;
+    height: 100%;
+}
+.extend-dropdown-content p {
+    font-family: serif;
+    color: #605e5e;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+}
+.extend-dropdown-content hr {
+    border-bottom: none;
+}
+.extend-dropdown-content button {
+    width: 150px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #605e5e;
+    outline: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    color: #454444;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: zoomIn 1s ease forwards;
+    animation-delay: .2s;
+}
+.extend-dropdown-content button:hover {
+    background-color: #FF007F;
+    color: #fff;
+}
+.extend-dropdown-title h4 {
+    margin-bottom: -5px;
+    font-family: fantasy;
+    text-transform: capitalize;
+    font-weight: 800;
+    font-size: larger;
+    color: #605e5e;
+}
+/* 
+======================================================================================
+END OF FEATURE DROPDOWN
+======================================================================================
+*/
 /* 
 ======================================================================================
 BUTTONS
 ======================================================================================
 */
-header .loginBtn, .section-content .section-article button {
+header .loginBtn, .section-content .section-article button, form .contact-btn {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -141,7 +282,7 @@ header.height .loginBtn {
     animation-delay: .1s;
 }
 
-header .loginBtn:hover, .section-content .section-article button:hover {
+header .loginBtn:hover, .section-content .section-article button:hover, form .contact-btn:hover {
     background: #fff;
     color: #162938;
 }
@@ -150,7 +291,7 @@ header.height .loginBtn:hover {
     background: #162938;
     color: #fff;
 }
-header a:hover::after{
+.navigation a:hover::after{
     transform: scale(1);
     transform-origin: left;
 }
@@ -165,7 +306,6 @@ OWL CAROUSEL
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    /* background: url("web_flask/static/images/home1.jpg") no-repeat; */
     background-size: cover;
     background-position: center;
 }
@@ -254,46 +394,126 @@ header.height .logo {
 END OF LOGO
 ======================================================================================
 */
-
-/* 
-======================================================================================
-PRICING STYLES
-======================================================================================
-*/
-#pricing{
-    height: 100vh;
-    color: #fff;
-    text-align: center;
-    background-color: #162938;
-}
-#pricing h1{
-    margin: 0;
-}
-/* 
-======================================================================================
-END OF PRICING STYLES
-======================================================================================
-*/
-
 /* 
 ======================================================================================
 ABOUT STYLES
 ======================================================================================
 */
 #about{
-    height: 100vh;
+    height: max-content;
     color: #fff;
     text-align: center;
-    background-color: #06b9f7;
+    padding-bottom: 10px;
 }
-#about h1 {
-    margin: 0;
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    gap: 6px;
+    align-content: stretch;
+
+}
+.about-sections{
+    display: flex;
+    width: calc(98.98% / 3);
+    border-radius: 10px;
+}
+.about-sections:nth-child(1){
+    flex-direction: column;
+    width: 100%;
+    height: 5%;
+}
+.about-sections:nth-child(1) h1 {
+    color: #000;
+    margin: auto;
+    text-transform: capitalize;
+    font-family: fantasy;
+    margin: 100px 0 10px 0;
+}
+.about-sections:nth-child(2){
+    display: flex;
+    width: 100%;
+    height: 50%;
+    color: #000;
+}
+.about-sections:nth-child(2) .about-hma {
+    width: 65%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
+}
+.about-sections:nth-child(2) .about-hma h2 {
+    font-family: fantasy;
+}
+.about-sections:nth-child(2) .about-hma p {
+    font-family: serif;
+    font-size: 18px;
+    line-height: 40px;
+}
+.about-sections:nth-child(2) .about-hma:nth-child(1) {
+    width: 35%;
+    background-size: contain !important;
+    height: auto;
+}
+.about-sections:nth-child(3), .about-sections:nth-child(4), 
+.about-sections:nth-child(5) {
+    background-color: #ff91a4;
+}
+.about-sections:nth-child(3):hover, .about-sections:nth-child(4):hover, 
+.about-sections:nth-child(5):hover {
+    background-color: #FF007F;
+}
+.about-sections:nth-child(3):hover .about-sections-contents h4, .about-sections:nth-child(4):hover .about-sections-contents h4, 
+.about-sections:nth-child(5):hover .about-sections-contents h4 {
+    color: #ff91a4;
+}
+.about-sections-contents {
+    background-color: #fff;
+    width: 100%;
+    margin: 3%;
+    border-radius: 10px;
+    color: #000;
+}
+.about-sections-contents h4 {
+    font-family: fantasy;
+    font-size: larger;
+}
+.about-sections-contents p {
+    font-family: serif;
+    line-height: 30px;
+    opacity: 0.7;
+}
+.about-sections-contents p:hover {
+    font-size: 20px;
 }
 /* 
 ======================================================================================
 END OF ABOUT STYLES
 ======================================================================================
 */
+/* 
+======================================================================================
+SERVICES STYLES
+======================================================================================
+*/
+#solution{
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+    background-color: #162938;
+}
+#solution h1{
+    margin: 0;
+}
+/* 
+======================================================================================
+END OF SERVICES STYLES
+======================================================================================
+*/
+
 /* 
 ======================================================================================
 BLOG STYLES
@@ -303,37 +523,150 @@ BLOG STYLES
     height: 100vh;
     color: #fff;
     text-align: center;
-    background-color: rgb(63, 5, 5);
+    background-color: #06b9f7;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #blog h1 {
-    margin: 0;
+    margin: auto;
 }
 /* 
 ======================================================================================
 END OF BLOG STYLES
 ======================================================================================
 */
-
 /* 
 ======================================================================================
-BLOG STYLES
+CONTACT STYLES
 ======================================================================================
 */
 #contact{
-    height: 100vh;
+    height: max-content;
     color: #fff;
     text-align: center;
-    background: linear-gradient(90deg, rgba(0,100,0,1) 0%, rgba(249,238,189,1) 100%);
-
+    background-color: #FFD1DC;
+    padding-bottom: 10px;
 }
-#contact h1 {
+.contact-container{
+    display: flex;
+    height: 100%;
+    position: relative;
+    top: 15%;
+}
+.contact-sections {
+    width: 45%;
+    height: auto;
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-sections:nth-child(2) {
+    width: 55%;
+    height: fit-content;
+}
+.contact-page {
+    width: 85%;
+    height: 85%;
+    margin: 50px;
+}
+.contact-us-title {
+    display: flex;
+}
+.form-container {
+    display: flex;
+    height: 90.8%;
+    width: 100%;
+}
+.form-container span{
+    color: red;
+    font-size: 20px;
+}
+form {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+form .name, form .email, form .phone, form .message {
+    display: flex;
+    gap: 6px;
+}
+form .email, form .message{
+    gap: 0;
+}
+.name .firstname, .name .lastname, 
+form .email, .phone .country, 
+.phone .phone-number, form .message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 10px 0;
+}
+.name .firstname input, .name .lastname input, 
+.email input, .phone .country input, 
+.phone .phone-number input, .message textarea{
+    width: 100%;
+    height: 40px;
+    font-size: larger;
+    padding: 10px;
+    font-family: serif;
+    color: #6f6f6f;
+    border-radius: 5px;
+}
+.message textarea {
+    height: 90px;
+}
+form .contact-btn {
+    float: left;
     margin: 0;
+    width: 40%;
+}
+.connect .icon-share{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50%;
+}
+.connect .icon-share i {
+    font-size: 35px;
+}
+.connect-icon a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    margin: 30px 15px 30px 0;
+    transition: .5s ease;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+
+.connect-icon a:hover{
+    background: #9b9b9b;
+    color: #162938;
+    box-shadow: 0 0 20px #000000;
 }
 /* 
 ======================================================================================
-END OF BLOG STYLES
+END OF CONTACT STYLES
 ======================================================================================
 */
+
 /* 
 ======================================================================================
 Keyframe Animations
