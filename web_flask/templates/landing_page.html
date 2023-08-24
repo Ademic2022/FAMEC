@@ -19,9 +19,9 @@
             </a>
             <nav class="navigation">
                 <ul>
-                    <li><a class="nav-btn" href="#features" style="--i:1;" id="dropdown">features <span><i class='bx bx-chevron-down'></i></span></a></li>
+                    <li><a class="nav-btn features" href="" style="--i:1;" id="dropdown">features <span><i class='bx bx-chevron-down'></i></span></a></li>
                     <li><a class="nav-btn"  href="#about" style="--i:2;">about us</a></li>
-                    <li><a class="nav-btn"  href="#services" style="--i:3;">services</a></li>
+                    <li><a class="nav-btn solution"  href="" style="--i:3;" id="dropdown">solutions <span><i class='bx bx-chevron-down'></i></span></a></li>
                     <!-- <li><a class="nav-btn"  href="#plans" style="--i:3;">plans</a></li> -->
                     <li><a class="nav-btn"  href="#blog" style="--i:4;">Blog</a></li>
                     <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact us</a></li>
@@ -57,6 +57,56 @@
                     <div class="feature-content" style="--i:4">
                         <a href="">
                             <h4><i class='bx bx-bell-plus'></i>Reminder & notification</h4>
+                            <p>Lorem ipsum consectetur adipisicing elit. Possimus perspiciatis odio tempore tenetur. Quasi, facilis.</p>
+                        </a>
+                    </div>
+                    <div class="feature-content" style="--i:5">
+                        <a href="">
+                            <h4><i class='bx bx-notepad'></i>notes & messages</h4>
+                            <p>Lorem  adipisicing elit. Possimus perspiciatis odio tempore tenetur. Quasi, facilis.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="more-features">
+                    <div class="more-features-content">
+                        <div class="more-feature-title">
+                            <h4>meet HMA</h4>
+                            <hr>
+                        </div>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi nihil asperiores quisquam consequuntur ipsam, dolorem accusantium in soluta quod architecto?</p>
+                        <a href="{{ url_for('register') }}"><button class="loginBtn">get started</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-content" id="solutionDropdown">
+            <div class="features-container">
+                <div class="features-menu">
+                    <div class="feature-content">
+                        <h4>Check out for the solutions FAMEC provided for you</h4>
+                        <hr>
+                    </div>
+                    <div class="feature-content" style="--i:1">
+                        <a href="">
+                            <h4><i class='bx bxs-user-rectangle'></i>Shared Calendar</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus perspiciatis odios.</p>
+                        </a>
+                    </div>
+                    <div class="feature-content" style="--i:2">
+                        <a href="">
+                            <h4><i class='bx bx-task'></i>Progress Tracking</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. odio tempore tenetur. Quasi, facilis.</p>
+                        </a>
+                    </div>
+                    <div class="feature-content" style="--i:3">
+                        <a href="">
+                            <h4><i class='bx bx-category'></i>Shopping Lists</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elits odio tempore tenetur. Quasi, facilis.</p>
+                        </a>
+                    </div>
+                    <div class="feature-content" style="--i:4">
+                        <a href="">
+                            <h4><i class='bx bx-bell-plus'></i>Children's Tas</h4>
                             <p>Lorem ipsum consectetur adipisicing elit. Possimus perspiciatis odio tempore tenetur. Quasi, facilis.</p>
                         </a>
                     </div>
@@ -162,9 +212,6 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section id="services">
-        <h1 class="content">Our Services</h1>
     </section>
     <section id="blog">
         <h1 class="content">Coming Soon</h1>

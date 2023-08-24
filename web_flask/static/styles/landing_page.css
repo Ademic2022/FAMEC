@@ -98,7 +98,8 @@ FEATURE DROPDOWN
 ======================================================================================
 */
 .dropdown-content{
-    height: 55%;
+    /* height: 55%; */
+    height: max-content;
     background-color: #fff;
     position: fixed;
     width: 100%;
@@ -144,11 +145,12 @@ FEATURE DROPDOWN
     align-items: flex-start;
     border-radius: 10px;
     opacity: 0;
+    margin-bottom: 8px;
     animation: slideRight 1s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
 .feature-content:hover {
-    background-color: #F9EEBD;
+    background-color: #FFD1DC;
 }
 .feature-content:nth-child(1) {
     display: block;
@@ -172,6 +174,7 @@ FEATURE DROPDOWN
     margin-top: 2px;
     border-bottom: none;
     border-color: #ffffff;
+    /* margin-bottom: 25px; */
 }
 .feature-content a {
     text-decoration: none;
@@ -198,7 +201,7 @@ FEATURE DROPDOWN
 }
 .more-features {
     width: 35%;
-    background-color: #638454;
+    background-color: #FFD1DC;
 }
 .more-features-content {
     display: flex;
@@ -208,15 +211,18 @@ FEATURE DROPDOWN
 }
 .more-features-content p {
     font-family: serif;
-    color: #fff;
+    color: #605e5e;
     opacity: 0;
     animation: slideLeft 1s ease forwards;
+}
+.more-features-content hr {
+    border-bottom: none;
 }
 .more-features-content button {
     width: 150px;
     height: 50px;
-    background: #c6c2c2;
-    border: 2px solid #F9EEBD;
+    background: #fff;
+    border: 2px solid #605e5e;
     outline: none;
     font-size: 1em;
     font-weight: 500;
@@ -228,7 +234,7 @@ FEATURE DROPDOWN
     animation-delay: .2s;
 }
 .more-features-content button:hover {
-    background-color: #006400;
+    background-color: #FF007F;
     color: #fff;
 }
 .more-feature-title h4 {
@@ -237,7 +243,7 @@ FEATURE DROPDOWN
     text-transform: capitalize;
     font-weight: 800;
     font-size: larger;
-    color: #fff;
+    color: #605e5e;
 }
 /* 
 ======================================================================================
@@ -394,18 +400,20 @@ ABOUT STYLES
 ======================================================================================
 */
 #about{
-    height: 158vh;
+    height: max-content;
+    /* height: 155vh; */
     color: #fff;
     text-align: center;
-    background-color: #089223;
+    /* background-color: #089223; */
+    padding-bottom: 10px;
 }
 .about-container {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    top: 9.3%;
+    /* top: 9.3%; */
     /* background-color: #c6c2c2; */
-    height: 85%;
+    /* height: 85%; */
     width: 100%;
     gap: 6px;
     align-content: stretch;
@@ -413,37 +421,40 @@ ABOUT STYLES
 }
 .about-sections{
     display: flex;
-    /* height: 85%; */
+    /* height: max-content; */
     width: calc(98.98% / 3);
-    background-color: #D0DB61;
+    /* background-color: #D0DB61; */
     border-radius: 10px;
 }
 .about-sections:nth-child(1){
     flex-direction: column;
     width: 100%;
     height: 5%;
-    background-color: #fff;
+    /* background-color: #D0DB61; */
+    /* background-color: #fff; */
 }
 .about-sections:nth-child(1) h1 {
     color: #000;
     margin: auto;
     text-transform: capitalize;
     font-family: fantasy;
+    margin: 100px 0 10px 0;
 }
 .about-sections:nth-child(2){
     display: flex;
-    gap: 10px;
+    /* gap: 10px; */
     width: 100%;
     height: 50%;
-    background-color: #089223;
+    /* background-color: #089223; */
     color: #000;
 }
 .about-sections:nth-child(2) .about-hma {
     width: 65%;
     height: 100%;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 10px;
+    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
 }
 .about-sections:nth-child(2) .about-hma h2 {
     font-family: fantasy;
@@ -456,6 +467,19 @@ ABOUT STYLES
 .about-sections:nth-child(2) .about-hma:nth-child(1) {
     width: 35%;
     background-size: contain !important;
+    height: auto;
+}
+.about-sections:nth-child(3), .about-sections:nth-child(4), 
+.about-sections:nth-child(5) {
+    background-color: #ff91a4;
+}
+.about-sections:nth-child(3):hover, .about-sections:nth-child(4):hover, 
+.about-sections:nth-child(5):hover {
+    background-color: #FF007F;
+}
+.about-sections:nth-child(3):hover .about-sections-contents h4, .about-sections:nth-child(4):hover .about-sections-contents h4, 
+.about-sections:nth-child(5):hover .about-sections-contents h4 {
+    color: #ff91a4;
 }
 .about-sections-contents {
     background-color: #fff;
@@ -463,8 +487,6 @@ ABOUT STYLES
     margin: 3%;
     border-radius: 10px;
     color: #000;
-    /* opacity: 0;
-    animation: slideRight 1s ease forwards; */
 }
 .about-sections-contents h4 {
     font-family: fantasy;
@@ -473,6 +495,10 @@ ABOUT STYLES
 .about-sections-contents p {
     font-family: serif;
     line-height: 30px;
+    opacity: 0.7;
+}
+.about-sections-contents p:hover {
+    font-size: 20px;
 }
 /* 
 ======================================================================================
@@ -484,13 +510,13 @@ END OF ABOUT STYLES
 SERVICES STYLES
 ======================================================================================
 */
-#services{
+#solution{
     height: 100vh;
     color: #fff;
     text-align: center;
     background-color: #162938;
 }
-#services h1{
+#solution h1{
     margin: 0;
 }
 /* 
@@ -554,7 +580,7 @@ CONTACT STYLES
     align-items: center;
 }
 .contact-sections:nth-child(2) {
-    background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
+    /* background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F); */
     width: 55%;
     height: fit-content;
 }

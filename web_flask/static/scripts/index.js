@@ -98,12 +98,34 @@ $(document).ready(function(){
 /*******************************************************************************************/
 // Feature Navigation Dropdown // 
 /*******************************************************************************************/
-const features =  document.querySelector('#dropdown');
-features.addEventListener('click', ()=>{
-  let featureDropdown = document.querySelector('#featureDropdown')
-  let bx = document.querySelector('.bx')
-  featureDropdown.classList.toggle('showDropdown')
-  if(bx.classList.contains('bx-chevron-down')){
-    bx.classList.toggle('bx-chevron-up')
-  }
+const features = document.querySelectorAll('#dropdown');
+features.forEach((event)=>{
+  event.addEventListener('click', ()=>{
+    const featureDropdown = document.querySelector('#featureDropdown');
+    const solutionDropdown = document.querySelector('#solutionDropdown');
+    
+
+    if (event.classList.contains('features')) {
+      featureDropdown.classList.toggle('showDropdown');
+    } else {
+      solutionDropdown.classList.toggle('showDropdown');
+    }
+    
+    // Toggle the chevron icon
+    const bx = event.querySelector('.bx');
+    if (bx.classList.contains('bx-chevron-down')) {
+      bx.classList.toggle('bx-chevron-up');
+    }
+
+    // Close the other dropdown if it's open
+    if (event.classList.contains('features') && solutionDropdown.classList.contains('showDropdown')) {
+      solutionDropdown.classList.remove('showDropdown');
+      const solutionBx = document.querySelector('.solution .bx');
+      solutionBx.classList.remove('bx-chevron-up');
+    } else if (!event.classList.contains('features') && featureDropdown.classList.contains('showDropdown')) {
+      featureDropdown.classList.remove('showDropdown');
+      const featureBx = document.querySelector('.features .bx');
+      featureBx.classList.remove('bx-chevron-up');
+    }
+  })
 })
