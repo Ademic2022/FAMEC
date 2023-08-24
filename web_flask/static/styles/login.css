@@ -9,13 +9,27 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* min-height: 100vh; */
 }
 /* 
 ======================================================================================
 LOGIN CASCADING
 ======================================================================================
 */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    z-index: 1000;
+}
+header h3 {
+    font-family: fantasy;
+}
 .header-title h1 {
     text-align: center;
     margin-top: 40px;
@@ -31,14 +45,13 @@ LOGIN CASCADING
 .container-box{
     position: fixed;
     z-index: 1;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
     padding-top: 100px;
-    top: 0;
+    top: 60px;
     left:0;
     background-color: rgba(0,0,0,0.4);
-    /* display: none; */
     transition: 3s ease-in-out;
 }
 .container{
@@ -73,8 +86,8 @@ LOGIN CASCADING
     width: 100%;
     padding: 40px;
 }
-.form-box h2{
-    font-size: 2em;
+.form-box h3{
+    font-size: 1.5em;
     color: #fff;
     text-align: center;
 }
