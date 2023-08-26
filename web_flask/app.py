@@ -32,5 +32,25 @@ def dashboard():
 def users():
     return render_template('users.html')
 
+@app.route('/tasks')
+def tasks():
+    return render_template('task.html')
+
+@app.route('/notification')
+def notification():
+    return render_template('notification.html')
+
+@app.route('/events')
+def events():
+    return render_template('events.html')
+
+@app.route('/family')
+def family():
+    return render_template('family.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
