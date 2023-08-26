@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css')  }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>{% block title %}Base{% endblock %}</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_details">
+            <i class="bx bxl-audible icon"></i>
+            <div class="logo_name">FAMEC</div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <i class="bx bx-search"></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="{{ url_for('dashboard') }}">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="{{ url_for('users') }}">
+                    <i class="bx bx-user"></i>
+                    <span class="link_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-chat"></i>
+                    <span class="link_name">Message</span>
+                </a>
+                <span class="tooltip">Message</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-task'></i>
+                    <span class="link_name">Tasks</span>
+                </a>
+                <span class="tooltip">Tasks</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-bell' ></i>
+                    <span class="link_name">Notification</span>
+                </a>
+                <span class="tooltip">Notification</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-calendar-event'></i>
+                    <span class="link_name">Event</span>
+                </a>
+                <span class="tooltip">Event</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-group' ></i>
+                    <span class="link_name">Family</span>
+                </a>
+                <span class="tooltip">Family</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-cog"></i>
+                    <span class="link_name">Settings</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+            <li class="profile">
+                <div class="profile_details">
+                    <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="profile image">
+                    <div class="profile_content">
+                        <div class="name">Admin Admin</div>
+                        <div class="designation">Admin</div>
+                    </div>
+                </div>
+                <i class="bx bx-log-out" id="log_out"></i>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        {% block section_contents %}{% endblock %}
+    </section>
+    <script src="{{ url_for('static', filename='scripts/base.js')  }}"></script>
+</body>
+</html>
