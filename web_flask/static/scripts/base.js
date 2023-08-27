@@ -3,6 +3,8 @@ window.onload = function(){
     const closeBtn = document.querySelector("#btn");
     const searchBtn = document.querySelector(".bx-search")
 
+    $('.ui.dropdown').dropdown();
+
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
         menuBtnChange()

@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root{
-  --color-default:#004f83;
-  --color-second:#0067ac;
+  --color-default:#ff007f;
+  --color-second:#ff91a4;
   --color-white:#fff;
   --color-body:#e4e9f7;
   --color-light:#e0e0e0;
@@ -299,4 +299,13 @@ body{
 .sidebar.open ~ .home-section{
   left:250px;
   width: calc(100% - 250px);
+}
+
+div.ui.right.floated.dropdown {
+  height: 42px; 
+  padding: 10px 10px !important;
+  background-color: #fff;
+}
+div.ui.inverted.segment {
+  background-color: var(--color-second);
 }

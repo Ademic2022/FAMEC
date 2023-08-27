@@ -93,8 +93,30 @@
         </ul>
     </div>
     <section class="home-section">
-        <div class="ui blue inverted segment">
+        <div class="ui inverted segment">
             {% block section_contents %}{% endblock %}
+            <div class="ui right floated dropdown labeled icon button">
+                <div class="floated">
+                    <img class="ui avatar image" src="{{ url_for('static', filename='images/avatar.png')  }}">
+                    Jenny Hess
+                </div>
+                <div class="menu">
+                  <div class="header ui menu">
+                    Navigation Menu
+                  </div>
+                  <div class="scrolling menu">
+                    <a class="item" href="{{ url_for('views.notification') }}">
+                        <i class="icon mail"></i> Notification
+                    </a>
+                    <a class="item" href="{{ url_for('views.settings') }}">
+                        <i class="icon setting"></i> Settings
+                    </a>
+                    <a class="item" href="{{ url_for('auth.logout') }}">
+                        <i class="icon logout"></i> Logout
+                    </a>
+                  </div>
+                </div>
+            </div>
             <div class="ui right floated compact menu">
                 <a class="item" href="{{ url_for('views.notification') }}">
                   <i class="icon mail"></i> Notification
@@ -104,14 +126,11 @@
                     <i class='bx bx-task'></i> Tasks
                   <div class="floating ui circular teal label">22</div>
                 </a> 
-              </div>
+            </div>
         </div>
     </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" 
-        integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/base.js')  }}"></script>
 </body>
 </html>
