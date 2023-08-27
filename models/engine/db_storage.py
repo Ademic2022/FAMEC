@@ -46,7 +46,7 @@ class DBStorage():
                     dic[key] = elem
         return (dic)
     
-    def save(self, obj):
+    def new(self, obj):
         """add a new element in the table
         """
         self.__session.add(obj)
