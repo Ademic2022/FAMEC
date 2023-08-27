@@ -3,9 +3,9 @@
 initialize the models package
 """
 
-from os import getenv
+import os
 from models.engine.db_storage import DBStorage
 
 
-storage_t = getenv("HBNB_TYPE_STORAGE")
+storage_t = os.getenv("HMA_TYPE_STORAGE")
 storage = DBStorage()
