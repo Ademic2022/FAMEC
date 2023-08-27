@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* styles.css */
+:root{
+    --color-default:#ff007f;
+    --color-second:#ff91a4;
+    --color-white:#fff;
+    --color-body:#e4e9f7;
+    --color-light:#e0e0e0;
+    --font-default: "Poppins", sans-serif;
+  }
 * {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
@@ -15,7 +24,7 @@ body {
 LOGIN CASCADING
 ======================================================================================
 */
-header {
+#header {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,8 +36,8 @@ header {
     padding: 15px 40px;
     z-index: 1000;
 }
-header h3 {
-    font-family: fantasy;
+#header h3 {
+    font-family: var(--font-default);
 }
 .header-title h1 {
     text-align: center;
@@ -160,8 +169,128 @@ header h3 {
     font-size: 1em;
     color: #fff;
 }
+div.ui.raised.very.padded{
+    position: relative;
+    top: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+form label {
+    color: #232323 !important;
+}
 /* 
 ======================================================================================
 END OF LOGIN CASCADING
 ======================================================================================
 */
+
+
+/* 
+======================================================================================
+Keyframe Animations
+======================================================================================
+*/
+
+@keyframes slideRight {
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft {
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideTop {
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom {
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes zoomIn {
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes floatImage {
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-24px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+/* SKILLBAR ANIMATION */
+
+@keyframes html {
+    100%{
+        width: 86%;
+    }
+}
+@keyframes css {
+    100%{
+        width: 75%;
+    }
+}
+@keyframes javascript {
+    100%{
+        width: 82%;
+    }
+}
+@keyframes python {
+    100%{
+        width: 88%;
+    }
+}
+@keyframes mysql {
+    100%{
+        width: 70%;
+    }
+}
+@keyframes scrollDownAnimation {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(-10px);
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(10px);
+    }
+  }

@@ -1,3 +1,10 @@
+:root{
+    --color-default:#ff007f;
+    --color-second:#ff91a4;
+    --color-white:#fff;
+    --color-body:#e4e9f7;
+    --color-light:#e0e0e0;
+}
 *{
     margin: 0;
     padding: 0;
@@ -25,7 +32,7 @@ LOGIN AND REGISTRATION CASCADING
     padding-top: 100px;
     top: 0;
     left:0;
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--color-second);
     transition: 3s ease-in-out;
 }
 .container{
