@@ -1,19 +1,13 @@
-#!/usr/bin/venv python3
-"""
-Contains the class DBStorage
-"""
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
-import models
-from models.assignment import Assignment
 from models.base_model import BaseModel, Base
+from models.assignment import Assignment
 from models.comment import Comment
 from models.notification import Notification
 from models.task import Task
 from models.user import User
-from os import getenv
-# import sqlalchemy
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {"Assignment": Assignment, "Comment": Comment,
            "Notification": Notification, "Task": Task, "User": User}
@@ -26,11 +20,11 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HMA_MYSQL_USER = getenv('HBNB_MYSQL_USER')
-        HMA_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
-        HMA_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
-        HMA_MYSQL_DB = getenv('HBNB_MYSQL_DB')
-        HMA_ENV = getenv('HBNB_ENV')
+        HMA_MYSQL_USER = os.environ.get('HBNB_MYSQL_USER')
+        HMA_MYSQL_PWD = os.environ.get('HBNB_MYSQL_PWD')
+        HMA_MYSQL_HOST = os.environ.get('HBNB_MYSQL_HOST')
+        HMA_MYSQL_DB = os.environ.get('HBNB_MYSQL_DB')
+        HMA_ENV = os.environ.get('HBNB_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(HMA_MYSQL_USER,
                                              HMA_MYSQL_PWD,
@@ -48,7 +42,7 @@ class DBStorage:
                 for obj in objs:
                     key = obj.__class__.__name__ + '.' + obj.id
                     new_dict[key] = obj
-        return (new_dict)
+        return new_dict
 
     def new(self, obj):
         """add the object to the current database session"""
@@ -82,12 +76,7 @@ class DBStorage:
         if cls not in classes.values():
             return None
 
-        all_cls = models.storage.all(cls)
-        for value in all_cls.values():
-            if (value.id == id):
-                return value
-
-        return None
+        return self.__session.query(classes[cls]).get(id)
 
     def count(self, cls=None):
         """
@@ -98,8 +87,8 @@ class DBStorage:
         if not cls:
             count = 0
             for clas in all_class:
-                count += len(models.storage.all(clas).values())
+                count += len(self.all(clas).values())
         else:
-            count = len(models.storage.all(cls).values())
+            count = len(self.all(cls).values())
 
         return count
