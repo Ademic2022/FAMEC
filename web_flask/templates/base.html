@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css')  }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
+        integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />    
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <title>{% block title %}Base{% endblock %}</title>
 </head>
 <body>
     <div class="sidebar">
         <div class="logo_details">
-            <i class="bx bxl-audible icon"></i>
+            <i class="bx bxl-audible zone"></i>
             <div class="logo_name">FAMEC</div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
@@ -21,14 +25,14 @@
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="{{ url_for('dashboard') }}">
+                <a href="{{ url_for('views.dashboard') }}">
                     <i class="bx bx-grid-alt"></i>
                     <span class="link_name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="{{ url_for('users') }}">
+                <a href="{{ url_for('views.users') }}">
                     <i class="bx bx-user"></i>
                     <span class="link_name">User</span>
                 </a>
@@ -42,35 +46,35 @@
                 <span class="tooltip">Message</span>
             </li>
             <li>
-                <a href="{{ url_for('tasks') }}">
+                <a href="{{ url_for('views.tasks') }}">
                     <i class='bx bx-task'></i>
                     <span class="link_name">Tasks</span>
                 </a>
                 <span class="tooltip">Tasks</span>
             </li>
             <li>
-                <a href="{{ url_for('notification') }}">
+                <a href="{{ url_for('views.notification') }}">
                     <i class='bx bx-bell' ></i>
                     <span class="link_name">Notification</span>
                 </a>
                 <span class="tooltip">Notification</span>
             </li>
             <li>
-                <a href="{{ url_for('events') }}">
+                <a href="{{ url_for('views.events') }}">
                     <i class='bx bx-calendar-event'></i>
                     <span class="link_name">Event</span>
                 </a>
                 <span class="tooltip">Event</span>
             </li>
             <li>
-                <a href="{{ url_for('family') }}">
+                <a href="{{ url_for('views.family') }}">
                     <i class='bx bx-group' ></i>
                     <span class="link_name">Family</span>
                 </a>
                 <span class="tooltip">Family</span>
             </li>
             <li>
-                <a href="{{ url_for('notification') }}">
+                <a href="{{ url_for('views.settings') }}">
                     <i class="bx bx-cog"></i>
                     <span class="link_name">Settings</span>
                 </a>
@@ -89,8 +93,25 @@
         </ul>
     </div>
     <section class="home-section">
-        {% block section_contents %}{% endblock %}
+        <div class="ui blue inverted segment">
+            {% block section_contents %}{% endblock %}
+            <div class="ui right floated compact menu">
+                <a class="item" href="{{ url_for('views.notification') }}">
+                  <i class="icon mail"></i> Notification
+                  <div class="floating ui circular red label">22</div>
+                </a>
+                <a class="item"  href="{{ url_for('views.tasks') }}">
+                    <i class='bx bx-task'></i> Tasks
+                  <div class="floating ui circular teal label">22</div>
+                </a> 
+              </div>
+        </div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" 
+        integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
     <script src="{{ url_for('static', filename='scripts/base.js')  }}"></script>
 </body>
 </html>
