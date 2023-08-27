@@ -166,7 +166,7 @@ FEATURE DROPDOWN
 .dropdown-content:nth-child(1) h4 {
     text-transform: capitalize;
     margin-top: 10px;
-    font-family:fantasy;
+    /* font-family:fantasy; */
     font-weight: 800;
     font-size: larger;
 }
@@ -183,7 +183,7 @@ FEATURE DROPDOWN
     display: flex;
     align-items: center;
     margin: 5px 0;
-    font-family: fantasy;
+    /* font-family: fantasy; */
     text-transform: capitalize;
     color: #162938;
 }
@@ -240,7 +240,7 @@ FEATURE DROPDOWN
 }
 .extend-dropdown-title h4 {
     margin-bottom: -5px;
-    font-family: fantasy;
+    /* font-family: fantasy; */
     text-transform: capitalize;
     font-weight: 800;
     font-size: larger;
@@ -428,7 +428,7 @@ ABOUT STYLES
     color: #000;
     margin: auto;
     text-transform: capitalize;
-    font-family: fantasy;
+    /* font-family: fantasy; */
     margin: 100px 0 10px 0;
 }
 .about-sections:nth-child(2){
@@ -446,7 +446,7 @@ ABOUT STYLES
     background-image: linear-gradient(#FF91A4, #FFD1DC, #FF007F);
 }
 .about-sections:nth-child(2) .about-hma h2 {
-    font-family: fantasy;
+    /* font-family: fantasy; */
 }
 .about-sections:nth-child(2) .about-hma p {
     font-family: serif;
@@ -478,7 +478,7 @@ ABOUT STYLES
     color: #000;
 }
 .about-sections-contents h4 {
-    font-family: fantasy;
+    /* font-family: fantasy; */
     font-size: larger;
 }
 .about-sections-contents p {

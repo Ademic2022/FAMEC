@@ -5,5 +5,17 @@ import models
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 
+time = "%Y-%m-%dT%H:%M:%S.%f"
 
-Base = declarative_base()
+if models.storage_t == "db":
+    Base = declarative_base()
+else:
+    Base = object
+    
+class BaseModel:
+    """ The basemodel class that all other classes will inherit from """
+    if models.storage_t == "db":
+        id = Column(String(60), primary_key=True)
+        created_at = Column(DateTime, default=datetime.utc.now)
+        updated_at = Column(DateTime, default=datetime.utc.now)
+        
