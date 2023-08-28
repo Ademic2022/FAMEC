@@ -22,10 +22,10 @@
                 <label>Password</label>
                 <div class="two fields">
                   <div class="field">
-                    <input type="text" name="password" placeholder="password">
+                    <input type="password" name="password" placeholder="password">
                   </div>
                   <div class="field">
-                    <input type="text" name="cpassword" placeholder="confirm password">
+                    <input type="password" name="cpassword" placeholder="confirm password">
                   </div>
                 </div>
             </div>
@@ -391,7 +391,7 @@
             </div>
         </div>
         <div class="ui message">
-            Already Registered? <a href="{{ url_for('auth.login') }}">Register</a>
+            Already Registered? <a href="{{ url_for('auth.login') }}">Login</a>
           </div>
         <button class="positive ui button">Register</button>
     </form>

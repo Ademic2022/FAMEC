@@ -129,6 +129,39 @@
             </div>
         </div>
     </section>
+    <section class="page-contents-section">
+        <div class="ui fluid container">
+            {% block page_contents %}{% endblock %}
+        </div>
+    </section>
+    <div class="ui inverted vertical footer segment">
+        <div class="ui container very padded basic segment">
+        <div class="ui stackable inverted divided equal height stackable grid">
+            <div class="three wide column">
+            <h4 class="ui inverted header">About</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">Sitemap</a>
+                <a href="#" class="item">Contact Us</a>
+                <a href="#" class="item">Religious Ceremonies</a>
+                <a href="#" class="item">Gazebo Plans</a>
+            </div>
+            </div>
+            <div class="three wide column">
+            <h4 class="ui inverted header">Services</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">Banana Pre-Order</a>
+                <a href="#" class="item">DNA FAQ</a>
+                <a href="#" class="item">How To Access</a>
+                <a href="#" class="item">Favorite X-Men</a>
+            </div>
+            </div>
+            <div class="seven wide column">
+            <h4 class="ui inverted header">Footer Header</h4>
+            <p class="ui inverted grey text">Extra space for a call to action inside the footer that could help re-engage users.</p>
+            </div>
+        </div>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/base.js')  }}"></script>
