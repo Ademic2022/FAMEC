@@ -340,3 +340,6 @@ p.left_menu {
 .ui.internally.celled.grid {
   margin-bottom: 50px !important;
 }
+.fluid.content {
+  margin-top: 30px !important;
+}
