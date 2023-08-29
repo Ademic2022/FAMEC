@@ -15,7 +15,7 @@ class User(BaseModel, Base):
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
-        family_members = Column(String(128), nullable=False)
+        family_members = Column(String(255), nullable=False)
     else:
         email = ""
         password = ""
@@ -34,7 +34,7 @@ class User(BaseModel, Base):
         """saving the password to the database after hashing it"""
         if "password" in self.__dict__:
             self.password = hashlib.md5(self.password.encode()).hexdigest()
-            super().save
+            super().save()
             
     def add_fam_member(self, member_name):
         """ Adding family members to the list"""
