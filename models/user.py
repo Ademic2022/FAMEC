@@ -1,10 +1,12 @@
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (create_engine)
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 from models.base_model import BaseModel, Base
 import models
 import hashlib
+
 
 
 class User(BaseModel, Base):
@@ -12,15 +14,22 @@ class User(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'users'
         __table_arg__ = {"mysql_default_charset": "latin1"}
+        firstname = Column(String(128), nullable=False)
+        lastname = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
-        family_members = Column(String(255), nullable=False)
+        address = Column(String(255), nullable=False)
+        birthday = Column(Integer, nullable=False)
+        # family_members = Column(String(255), nullable=False)
     else:
         email = ""
         password = ""
         username = ""
-        family_members = ""
+        firstname = ""
+        lastname = ""
+        address = ""
+        birthday = ""
         
     def __init__(self, *args, **kwargs):
         """Initializes the user if a passwordis created
@@ -35,13 +44,4 @@ class User(BaseModel, Base):
         if "password" in self.__dict__:
             self.password = hashlib.md5(self.password.encode()).hexdigest()
             super().save()
-            
-    def add_fam_member(self, member_name):
-        """ Adding family members to the list"""
-        self.family_members = []
-        self.family_members.append(member_name)
-        
-    def get_fam_mem(self):
-        """ get the list of family members"""
-        return self.family_members
     
