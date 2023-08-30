@@ -22,15 +22,15 @@
           <label>Name</label>
             <div class="two fields">
                 <div class="field">
-                <input type="text" name="firstname" placeholder="First Name" id="firstname">
+                <input type="text" name="firstname" placeholder="First Name" id="firstname" value="{% if user_data %}{{ user_data['firstname'] }}{% endif %}">
                 </div>
                 <div class="field">
-                <input type="text" name="lastname" placeholder="Last Name" id="lastname">
+                <input type="text" name="lastname" placeholder="Last Name" id="lastname" value="{% if user_data %}{{ user_data['lastname'] }}{% endif %}">
                 </div>
             </div>
             <div class="field">
                 <label for="username">User Name</label>
-                <input type="text" name="username" placeholder="User Name">
+                <input type="text" name="username" placeholder="User Name" value="{% if user_data %}{{ user_data['username'] }}{% endif %}">
             </div>
             <div class="field">
                 <label>Password</label>
@@ -46,16 +46,16 @@
         </div>
         <div class="field">
             <label>E-mail</label>
-            <input type="email" name="email" placeholder="joe@schmoe.com">
+            <input type="email" name="email" placeholder="joe@schmoe.com" value="{% if user_data %}{{ user_data['email'] }}{% endif %}">
         </div>
         <div class="field">
           <label>Address</label>
           <div class="fields">
             <div class="twelve wide field">
-              <input type="text" name="address" placeholder="Street Address">
+              <input type="text" name="address" placeholder="Street Address" value="{% if user_data %}{{ user_data['address'] }}{% endif %}">
             </div>
             <div class="four wide field">
-              <input type="text" name="apt" placeholder="Apt #">
+              <input type="text" name="apt" placeholder="Apt #" value="{% if user_data %}{{ user_data['apt'] }}{% endif %}">
             </div>
           </div>
         </div>
@@ -395,7 +395,7 @@
               </select>
             </div>
             <div class="field">
-              <input type="text" name="birth_day" maxlength="4" placeholder="Day">
+              <input type="text" name="birth_day" maxlength="4" placeholder="Day" value="{% if user_data %}{{ user_data['birth_day'] }}{% endif %}">
             </div>
         </div>
         <div class="ui segment">

@@ -68,7 +68,9 @@ def register():
             # All checks passed, proceed with registration
             flash('Registration successful', category='success')
             return redirect(url_for('auth.login'))
-
+        
+        return render_template('auth/register.html', user_data=user_data)
+    
     return render_template('auth/register.html')
 
 @auth.route('/logout')
