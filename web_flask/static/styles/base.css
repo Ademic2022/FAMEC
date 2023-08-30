@@ -343,3 +343,13 @@ p.left_menu {
 .fluid.content {
   margin-top: 30px !important;
 }
+
+/* Flash messages */
+.ui.success.message {
+  position: absolute;
+  right: 0;
+  top:90%;
+  z-index: 99;
+  text-align: center;
+  width: 25%;
+}

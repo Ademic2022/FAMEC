@@ -17,7 +17,7 @@ def login():
         user = storage.find_user_by_email(email)
         if user:
             if hash_password == user.password:
-                flash('Logged in successfully', category='success')
+                # flash('Logged in successfully', category='success')
                 return redirect(url_for('views.dashboard'))
             else: 
                 flash('Incorrect Password, try again', category='error')
@@ -26,11 +26,19 @@ def login():
 
     return render_template('auth/login.html') 
 
-@auth.route('/register')
+# REGISTER ROUTE FUNCTIONALITY
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
+    # firstname = 
+    # lastname = 
+    # username = 
+    # password = 
+    # confirm_pass = 
+    # email = 
+
+
     return render_template('auth/register.html')
 
 @auth.route('/logout')
 def logout():
     return render_template('logout.html')
-    # return render_template('login.html')
