@@ -14,13 +14,13 @@ class User(BaseModel, Base):
     if models.storage_t == "db":
         __tablename__ = 'users'
         __table_arg__ = {"mysql_default_charset": "latin1"}
-        firstname = Column(String(128), nullable=False)
-        lastname = Column(String(128), nullable=False)
+        # firstname = Column(String(128), nullable=False)
+        # lastname = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
-        address = Column(String(255), nullable=False)
-        birthday = Column(Integer, nullable=False)
+        # address = Column(String(255), nullable=False)
+        # birthday = Column(Integer, nullable=False)
         # family_members = Column(String(255), nullable=False)
     else:
         email = ""

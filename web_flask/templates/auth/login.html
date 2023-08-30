@@ -5,15 +5,30 @@
         <div class="container">
             <div class="form-box login">
                 <h3>Login</h3>
-                <form action="#" method="POST">
+                {% with messages = get_flashed_messages(with_categories = true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'error' %}
+                                <div class="ui negative message">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                    {{ message }}
+                                    </div>
+                                    <!-- <p>That offer has expired</p> -->
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form action="{{ url_for('auth.login') }}" method="POST">
                     <div class="input-section">
                         <span class="icon"><i class='bx bx-envelope'></i></span>
-                        <input type="email" name="" required>
+                        <input type="email" name="email" required>
                         <label for="email">Email</label>
                     </div>
                     <div class="input-section">
                         <span class="icon"><i class='bx bx-hide' id="toggleVisibility"></i></span>
-                        <input type="password" name="" id="passwordInput" required>
+                        <input type="password" name="password" id="passwordInput" required>
                         <label for="password">Password</label>
                     </div>
                     <div class="form-footer">
@@ -29,48 +44,3 @@
         </div>
     </div>
 {% endblock %}
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/login.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <title>HMA/Login</title>
-</head>
-<body>
-    <header id="header" >
-        <h3>Home Management App for Mum(FAMEC)</h3>
-    </header>
-    <section id="login">
-        <div class="container-box">
-            <div class="container">
-                <div class="form-box login">
-                    <h3>Login</h3>
-                    <form action="#" method="POST">
-                        <div class="input-section">
-                            <span class="icon"><i class='bx bx-envelope'></i></span>
-                            <input type="email" name="" required>
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="input-section">
-                            <span class="icon"><i class='bx bx-hide' id="toggleVisibility"></i></span>
-                            <input type="password" name="" id="passwordInput" required>
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="form-footer">
-                            <label for=""><input type="checkbox"> Remember me</label>
-                            <a href="#">Forgot Password?</a>
-                        </div>
-                        <button type="submit" class="btn">Login</button>
-                        <div class="login-register">
-                            <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="{{ url_for('static', filename='scripts/login.js')  }}"></script>
-</body>
-</html> -->

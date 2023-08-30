@@ -1,9 +1,14 @@
-from models.engine.db_storage import DBStorage
-from models.base_model import BaseModel
 from os import getenv
 
-# if getenv("FAMEC_MYSQL_DB") == "db":
-#     storage = DBStorage()
+# Get the storage type configuration
 storage_t = getenv('FAMEC_TYPE_STORAGE')
-if storage_t == 'db':
-    storage = DBStorage()
+
+if storage_t == "db":
+    # Import the DBStorage class when needed
+    from models.engine.db_storage import DBStorage
+    storage = DBStorage()  # Create an instance of the DBStorage class
+else:
+    # Import other storage types here if needed
+    storage = None
+
+storage.reload()  # Reload the storage instance

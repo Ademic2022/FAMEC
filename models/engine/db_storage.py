@@ -60,6 +60,12 @@ class DBStorage():
         if obj:
             self.__session.delete(obj)
 
+    def find_user_by_email(self, email):
+        from models.user import User
+        """Find a user by their email"""
+        query = self.__session.query(User).filter_by(email=email).first()
+        return query
+
     def reload(self):
         """configuration
         """
