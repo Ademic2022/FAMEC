@@ -1,8 +1,12 @@
 from flask import Flask
+from flask_login import LoginManager
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'famec'
+
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
 
     from .views import views
     from .auth import auth

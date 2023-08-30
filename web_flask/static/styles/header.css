@@ -179,6 +179,13 @@ div.ui.raised.very.padded{
 form label {
     color: #232323 !important;
 }
+
+.des{
+    position: absolute;
+    top: 40%;
+    z-index: 99;
+
+}
 /* 
 ======================================================================================
 END OF LOGIN CASCADING
