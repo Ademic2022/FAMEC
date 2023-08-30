@@ -1,9 +1,9 @@
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (create_engine)
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from models.base_model import BaseModel, Base
+from datetime import datetime
 import models
 import hashlib
 
@@ -20,7 +20,7 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
         address = Column(String(255), nullable=False)
-        birthday = Column(Integer, nullable=False)
+        birthday = Column(String(5), nullable=False)
         family_members = Column(String(255), nullable=False)
     else:
         email = ""
