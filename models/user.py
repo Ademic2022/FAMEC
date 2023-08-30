@@ -20,8 +20,8 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
         address = Column(String(255), nullable=False)
-        birthday = Column(DateTime, default=datetime.utcnow)
-        # family_members = Column(String(255), nullable=False)
+        birthday = Column(String(5), nullable=False)
+        family_members = Column(String(255), nullable=False)
     else:
         email = ""
         password = ""

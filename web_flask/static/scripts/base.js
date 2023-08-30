@@ -5,6 +5,12 @@ window.onload = function(){
 
     $('.ui.dropdown').dropdown();
 
+    $('.message .close').on('click', function() {
+        $(this)
+          .closest('.message')
+          .transition('fade');
+    });
+
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
         menuBtnChange()
