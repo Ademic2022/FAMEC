@@ -9,6 +9,7 @@ class DBStorage:
         self.__engine = None
         self.__session = None
         self.__setup_engine()
+        self.__create_session()  # Initialize the session
 
     def __setup_engine(self):
         user = getenv('FAMEC_MYSQL_USER')
@@ -22,8 +23,14 @@ class DBStorage:
             pool_pre_ping=True
         )
 
+        # if env == 'test':
+        #     Base.metadata.drop_all(self.__engine)
+
         if env == 'test':
             Base.metadata.drop_all(self.__engine)
+        else:
+            Base.metadata.create_all(self.__engine)
+
 
     def __create_session(self):
         if self.__session is None:

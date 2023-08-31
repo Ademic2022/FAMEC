@@ -1,12 +1,13 @@
 from flask import Flask
 from flask_login import LoginManager
+from datetime import timedelta
+from models import storage
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'famec'
-
-    # login_manager = LoginManager()
-    # login_manager.login_view = 'auth.login'
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=3600)  # Set session timeout to 1 hour
+    app.config['REMEMBER_COOKIE_DURATION'] = timedelta(seconds=3600)  # Set the duration you want here
 
     from .views import views
     from .auth import auth
@@ -20,15 +21,11 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        from models import storage
         return storage.find_user_by_id(id)
 
-    return app  # Return the app instance here
+    return app
 
-# Configure the database session when the Flask app is created or initialized
 def configure_db(app):
-    from models import storage
     with app.app_context():
         storage.reload()
     return app
-

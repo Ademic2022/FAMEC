@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css')  }}">
-
+    {% block task_css %}{% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
         integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />    
@@ -84,12 +84,16 @@
                 <div class="profile_details">
                     <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="profile image">
                     <div class="profile_content">
-                        <div class="name">Admin Admin</div>
+                        <div class="name">
+                            {% if user.is_authenticated %}
+                                {{ user.username }}
+                            {% endif %}
+                        </div>
                         <div class="designation">Admin</div>
                     </div>
                 </div>
                 <!-- <i class="bx bx-log-out" id="log_out"></i> -->
-                <a class="" href="{{ url_for('auth.login') }} "id='log_out' >
+                <a class="" href="{{ url_for('auth.logout') }} "id='log_out' >
                     <i class="bx bx-log-out" id="log_out"></i>
                 </a>
             </li>
@@ -124,7 +128,9 @@
             <div class="ui right floated dropdown labeled icon button">
                 <div class="floated">
                     <img class="ui avatar image" src="{{ url_for('static', filename='images/avatar.png')  }}">
-                    Jenny Hess
+                    {% if user.is_authenticated %}
+                        {{ user.firstname }}
+                    {% endif %}
                 </div>
                 <div class="menu">
                   <div class="header ui menu">
@@ -137,7 +143,7 @@
                     <a class="item" href="{{ url_for('views.settings') }}">
                         <i class="icon setting"></i> Settings
                     </a>
-                    <a class="item" href="{{ url_for('auth.login') }}">
+                    <a class="item" href="{{ url_for('auth.logout') }}">
                         <i class="icon logout"></i> Logout
                     </a>
                   </div>

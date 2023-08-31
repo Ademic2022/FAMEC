@@ -353,3 +353,7 @@ p.left_menu {
   text-align: center;
   width: 25%;
 }
+
+.ui.inverted.vertical.footer.segment {
+  margin-top: 100px;
+}

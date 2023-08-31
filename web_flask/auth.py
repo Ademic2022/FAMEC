@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, url_for,request, flash, redirect
-from flask_login import current_user, logout_user, login_user
+from flask_login import logout_user, login_user
 from models import storage
 from models.user import User
 import hashlib
@@ -33,8 +33,7 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        # action = request.form.get('register')
-        # if action == 'register':
+
         user_data = {
             "firstname": request.form.get('firstname'),
             "lastname": request.form.get('lastname'),
@@ -83,7 +82,7 @@ def register():
                     state=user_data['state'],
                     birthday=birthday
                 )
-                # Assuming you have a session object for database interaction
+                # store user in database
                 storage.new(new_user)
                 storage.save()
 
