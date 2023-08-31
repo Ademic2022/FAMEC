@@ -376,11 +376,12 @@ END OF OWL CAROUSEL
 LOGO
 ======================================================================================
 */
-.logo {
+.logo img {
     font-size: 2em;
     user-select: none;
-    color: #fff;
-    opacity: 0;
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
     animation: slideRight 1s ease forwards;
 }
 
