@@ -13,11 +13,7 @@ class Note(BaseModel, Base):
         __table_arg__ = {"mysql_default_charset": "latin1"}
         title   = Column(String(255), nullable=False)
         content = Column(Text, nullable=False)
-        created_time = Column(DateTime, default=datetime.utcnow, nullable=False)
-        last_updated =  Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
          
     else:
         title = ""
         content = ""
-        created_time = ""
-        last_updated = ""

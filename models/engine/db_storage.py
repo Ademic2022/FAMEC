@@ -4,77 +4,85 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
 from models.base_model import Base
 
-
-class DBStorage():
-    """ create tables in environmental"""
-    __engine = None
-    __session = None
-    
+class DBStorage:
     def __init__(self):
+        self.__engine = None
+        self.__session = None
+        self.__setup_engine()
+
+    def __setup_engine(self):
         user = getenv('FAMEC_MYSQL_USER')
         db_password = getenv('FAMEC_MYSQL_PWD')
         database = getenv('FAMEC_MYSQL_DB')
         host = getenv('FAMEC_MYSQL_HOST')
         env = getenv('FAMEC_ENV')
 
-        self.__engine  = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                                      .format(user, db_password, host, database),
-                                      pool_pre_ping=True)
-        
+        self.__engine = create_engine(
+            f'mysql+mysqldb://{user}:{db_password}@{host}/{database}',
+            pool_pre_ping=True
+        )
+
         if env == 'test':
             Base.metadata.drop_all(self.__engine)
-    
-    def all(self, cls):
-        """returns a dictionary
-        Return:
-            returns a dictionary of __object
-        """
-        dic = {}
-        if cls:
-            if type(cls) is str:
-                cls = eval(cls)
-            query = self.__session.query(cls)
-            for element in query:
-                key = "{}.{}".format(type(element).__name__, element.id)
-                dic[key] = element
+
+    def __create_session(self):
+        if self.__session is None:
+            sec = sessionmaker(bind=self.__engine, expire_on_commit=False)
+            self.__session = scoped_session(sec)
+        return self.__session()
+
+    def all(self, cls=None):
+        session = self.__create_session()
+        objects = {}
+        
+        if cls is None:
+            from models.user import User # Import all model classes here
+            from models.base_model import BaseModel # Import all model classes here
+            from models.note import Note # Import all model classes here
+            from models.notification import Notification # Import all model classes here
+            from models.task import Task # Import all model classes here
+            from models.user_info import UserInfo # Import all model classes here
+            cls_list = [User, BaseModel, Note, Notification, Task, UserInfo]
         else:
-            lista = ['model classes here']
-            for clase in lista:
-                query = self.__session.query(clase)
-                for elem in query:
-                    key = "{}.{}".format(type(elem).__name__, elem.id)
-                    dic[key] = elem
-        return (dic)
-    
+            cls_list = [cls]
+        
+        for cls in cls_list:
+            query = session.query(cls)
+            for element in query:
+                key = f"{cls.__name__}.{element.id}"
+                objects[key] = element
+        
+        return objects
+
     def new(self, obj):
-        """add a new element in the table
-        """
-        self.__session.add(obj)
-    def save (self):
-        """save changes
-        """
-        self.__session.commit()
-    def delete(self, obj = None):
-        """delete an element in the table
-        """
+        session = self.__create_session()
+        session.add(obj)
+
+    def save(self):
+        session = self.__create_session()
+        session.commit()
+
+    def delete(self, obj=None):
+        session = self.__create_session()
         if obj:
-            self.__session.delete(obj)
+            session.delete(obj)
 
     def find_user_by_email(self, email):
         from models.user import User
-        """Find a user by their email"""
-        query = self.__session.query(User).filter_by(email=email).first()
+        session = self.__create_session()
+        query = session.query(User).filter_by(email=email).first()
+        return query
+
+    def find_user_by_id(self, id):
+        from models.user import User
+        session = self.__create_session()
+        query = session.query(User).filter_by(id=id).first()
         return query
 
     def reload(self):
-        """configuration
-        """
         Base.metadata.create_all(self.__engine)
-        sec = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sec)
-        self.__session = Session()
+        self.__create_session()
 
     def close(self):
-        """ calls remove()
-        """
-        self.__session.close()
+        if self.__session:
+            self.__session.remove()

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, url_for,request, flash, redirect
-from flask_login import login_required, current_user
+from flask_login import current_user, logout_user, login_user
 from models import storage
 from models.user import User
 import hashlib
@@ -20,6 +20,7 @@ def login():
         if user:
             if hash_password == user.password:
                 # flash('Logged in successfully', category='success')
+                login_user(user, remember=True)
                 return redirect(url_for('views.dashboard'))
             else: 
                 flash('Incorrect Password, try again', category='error')
@@ -41,8 +42,8 @@ def register():
             "password": request.form.get('password'),
             "confirm_pass": request.form.get('confirm_pass'),
             "email": request.form.get('email'),
-            "address": request.form.get('apt'),
-            "apt": request.form.get('apt'),
+            "address": request.form.get('address'),
+            "zipcode": request.form.get('zipcode'),
             "country": request.form.get('country'),
             "state": request.form.get('state'),
             "birth_month": request.form.get('birth_month'),
@@ -60,19 +61,40 @@ def register():
             flash('Password must be at least 6 characters long', category='error')
         elif not re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", user_data['email']):
             flash('Invalid email address', category='error')
+        elif len(user_data['zipcode']) > 5:
+            flash('Invalid zipcode', category='error')
         elif 't_c' not in user_data:
             flash('You must accept the terms and conditions to register', category='error')
-        elif any(not user_data[field] for field in ['firstname', 'lastname', 'password', 'confirm_pass', 'email', 'address', 'apt', 'country', 'state', 'birth_month', 'birth_day']):
+        elif any(not user_data[field] for field in ['firstname', 'lastname', 'password', 'confirm_pass', 'email', 'address', 'zipcode', 'country', 'state', 'birth_month', 'birth_day']):
             flash('All fields are required', category='error')
         else:
-            # All checks passed, proceed with registration
-            flash('Registration successful', category='success')
-            return redirect(url_for('auth.login'))
-        
+            if all(user_data[field] for field in ['firstname', 'lastname', 'password', 'confirm_pass', 'email', 'address', 'zipcode', 'country', 'state', 'birth_month', 'birth_day']):
+                # All checks passed, proceed with registration
+                birthday = f"{user_data['birth_month']}/{user_data['birth_day']}"
+                new_user = User(
+                    firstname=user_data['firstname'],
+                    lastname=user_data['lastname'],
+                    username=user_data['username'],
+                    password=user_data['password'],
+                    email=user_data['email'],
+                    address=user_data['address'],
+                    zipcode=user_data['zipcode'],
+                    country=user_data['country'],
+                    state=user_data['state'],
+                    birthday=birthday
+                )
+                # Assuming you have a session object for database interaction
+                storage.new(new_user)
+                storage.save()
+
+                flash('Registration successful', category='success')
+                return redirect(url_for('auth.login'))
+            
         return render_template('auth/register.html', user_data=user_data)
     
     return render_template('auth/register.html')
 
 @auth.route('/logout')
 def logout():
-    return render_template('logout.html')
+    logout_user()
+    return redirect(url_for('auth.login'))

@@ -7,9 +7,5 @@ if storage_t == "db":
     # Import the DBStorage class when needed
     from models.engine.db_storage import DBStorage
     storage = DBStorage()  # Create an instance of the DBStorage class
-    storage.create_all_tables()  # Create all tables using SQLAlchemy's create_all method
-else:
-    # Import other storage types here if needed
-    storage = None
 
 # storage.reload()  # Reload the storage instance
