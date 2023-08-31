@@ -6,10 +6,11 @@ from models.base_model import BaseModel, Base
 from datetime import datetime
 import models
 import hashlib
+from flask_login import UserMixin
 
 
 
-class User(BaseModel, Base):
+class User(UserMixin, BaseModel, Base):
     """ Represent the user details for the user class"""
     if models.storage_t == "db":
         __tablename__ = 'users'
@@ -20,8 +21,11 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
         address = Column(String(255), nullable=False)
-        birthday = Column(String(5), nullable=False)
-        family_members = Column(String(255), nullable=False)
+        country = Column(String(30), nullable=False)
+        state = Column(String(30), nullable=False)
+        zipcode = Column(Integer(), nullable=False)
+        birthday = Column(String(10), nullable=True)
+        # family_members = Column(String(255), nullable=True)
     else:
         email = ""
         password = ""

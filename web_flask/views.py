@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, url_for
+from flask_login import login_required, current_user, logout_user, login_user
+
 
 views = Blueprint('views', __name__)
 
@@ -10,16 +12,15 @@ def landing_page():
         url_for('static', filename='images/home1.jpg'),
         url_for('static', filename='images/home2.jpg'),
         url_for('static', filename='images/home3.jpg'),
-        url_for('static', filename='images/hma_banner.jpg'),
-        url_for('static', filename='images/hma3.jpg'),
-        url_for('static', filename='images/hma1.jpg'),
-        url_for('static', filename='images/about.jpg')
+        url_for('static', filename='images/about.jpg'),
+        url_for('static', filename='images/Famec_logo_white.png')
     ]
     return render_template('landing_page.html', images = background_image_urls)
 
 @views.route('/dashboard')
+@login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', user = current_user)
 
 @views.route('/users')
 def users():

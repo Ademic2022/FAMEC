@@ -41,9 +41,9 @@
             <li>
                 <a href="#">
                     <i class="bx bx-chat"></i>
-                    <span class="link_name">Message</span>
+                    <span class="link_name">Notes</span>
                 </a>
-                <span class="tooltip">Message</span>
+                <span class="tooltip">Notes</span>
             </li>
             <li>
                 <a href="{{ url_for('views.tasks') }}">
@@ -88,7 +88,10 @@
                         <div class="designation">Admin</div>
                     </div>
                 </div>
-                <i class="bx bx-log-out" id="log_out"></i>
+                <!-- <i class="bx bx-log-out" id="log_out"></i> -->
+                <a class="" href="{{ url_for('auth.login') }} "id='log_out' >
+                    <i class="bx bx-log-out" id="log_out"></i>
+                </a>
             </li>
         </ul>
     </div>
@@ -134,7 +137,7 @@
                     <a class="item" href="{{ url_for('views.settings') }}">
                         <i class="icon setting"></i> Settings
                     </a>
-                    <a class="item" href="{{ url_for('auth.logout') }}">
+                    <a class="item" href="{{ url_for('auth.login') }}">
                         <i class="icon logout"></i> Logout
                     </a>
                   </div>
