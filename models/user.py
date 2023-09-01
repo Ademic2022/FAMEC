@@ -1,7 +1,7 @@
 from os import getenv
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import relationship
 from sqlalchemy import (create_engine)
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, String, Integer, ForeignKey
 from models.base_model import BaseModel, Base
 from datetime import datetime
 import models
@@ -26,6 +26,9 @@ class User(UserMixin, BaseModel, Base):
         zipcode = Column(Integer(), nullable=False)
         birthday = Column(String(10), nullable=True)
         # family_members = Column(String(255), nullable=True)
+
+        # Create a one-to-many relationship to the Task model
+        tasks = relationship('Task', back_populates='user')
     else:
         email = ""
         password = ""

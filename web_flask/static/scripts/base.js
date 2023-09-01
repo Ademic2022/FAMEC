@@ -11,6 +11,15 @@ window.onload = function(){
           .transition('fade');
     });
 
+    $(function(){
+        $("#new_task").click(function(){
+            $(".new_task").modal('show');
+        });
+        $(".new_task").modal({
+            closable: true
+        });
+    });
+
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
         menuBtnChange()
