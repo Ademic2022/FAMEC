@@ -10,7 +10,7 @@
         <i class="wrench icon"></i>
         <div class="menu">
             <div class="item">
-            <span class="text" id="new_task">New</span>
+            <span class="text" id="new_task">New Task</span>
             </div>
             <div class="item">
                 Open...
@@ -39,27 +39,37 @@
     </div>
 </div>
 <div class="ui bottom attached segment">
-<!-- page contents -->
+<!-- page Tables -->
     <table class="ui celled table">
         <thead>
-        <tr><th>Name</th>
-        <th>Age</th>
-        <th>Job</th>
-        </tr></thead>
+            <tr>
+                <th>Task Title</th>
+                <th>Task Description</th>
+                <th>Due Date</th>
+                <th>Date Created</th>
+                <th>Status</th>
+            </tr>
+        </thead>
         <tbody>
         <tr>
             <td data-label="Name">James</td>
             <td data-label="Age">24</td>
+            <td data-label="Job">Engineer</td>
+            <td data-label="Job">Engineer</td>
             <td data-label="Job">Engineer</td>
         </tr>
         <tr>
             <td data-label="Name">Jill</td>
             <td data-label="Age">26</td>
             <td data-label="Job">Engineer</td>
+            <td data-label="Job">Engineer</td>
+            <td data-label="Job">Engineer</td>
         </tr>
         <tr>
             <td data-label="Name">Elyse</td>
             <td data-label="Age">24</td>
+            <td data-label="Job">Designer</td>
+            <td data-label="Job">Designer</td>
             <td data-label="Job">Designer</td>
         </tr>
         </tbody>
@@ -87,7 +97,7 @@
     <div class="ui modal new_task">
         <div class="header">Add New Task</div>
         <div class="content">
-            <form class="ui form" method="POST">
+            <form class="ui form" method="POST" action="{{ url_for('views.tasks') }}">
                 <div class="field">
                     <label>Task Title</label>
                     <input type="text" name="task_title" placeholder="Task Title...">
@@ -99,29 +109,27 @@
                 <div class="two fields">
                     <div class="field">
                         <label>Priority</label>
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="priority">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Medium</div>
-                            <div class="menu">
-                                <div class="item" data-value="2">High</div>
-                                <div class="item" data-value="1">Medium</div>
-                                <div class="item" data-value="0">low</div>
-                            </div>
-                        </div>
+                        <select class="ui fluid search dropdown" name="priority">
+                          <option value="">Priority</option>
+                          <option value="High">High</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Low">Low</option>
+                        </select>
                     </div>
                     <div class="field">
                         <label>Due Date</label>
-                        <input placeholder="due_date" type="date">
+                        <input placeholder="Due Date" name="due_date" type="date">
                     </div>
                 </div>
-                <button class="ui button" type="submit">Submit</button>
+                <div class="actions footer">
+                    <button class="ui approve button" type="submit">Create Task</button>
+                    <div class="ui cancel button">Cancel</div>
+                </div>
             </form>
         </div>
-        <div class="actions">
-        <div class="ui approve button">Approve</div>
-        <div class="ui button">Neutral</div>
-        <div class="ui cancel button">Cancel</div>
-        </div>
+        <!-- <div class="actions">
+            <div class="ui approve button">Create Task</div>
+            <div class="ui cancel button">Cancel</div>
+        </div> -->
     </div>
 {% endblock %}
