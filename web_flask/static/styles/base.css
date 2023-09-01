@@ -345,7 +345,7 @@ p.left_menu {
 }
 
 /* Flash messages */
-.ui.success.message {
+.ui.success.message, .ui.negative.message {
   position: absolute;
   right: 0;
   top:90%;

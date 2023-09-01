@@ -51,27 +51,15 @@
             </tr>
         </thead>
         <tbody>
+        {% for task in user.tasks %}
         <tr>
-            <td data-label="Name">James</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Engineer</td>
-            <td data-label="Job">Engineer</td>
-            <td data-label="Job">Engineer</td>
+            <td data-label="title">{{ task.title }}</td>
+            <td data-label="description">{{ task.description }}</td>
+            <td data-label="due_date">{{ task.due_date }}</td>
+            <td data-label="date_created">{{ task.created_at }}</td>
+            <td data-label="status">{{ task.status }}</td>
         </tr>
-        <tr>
-            <td data-label="Name">Jill</td>
-            <td data-label="Age">26</td>
-            <td data-label="Job">Engineer</td>
-            <td data-label="Job">Engineer</td>
-            <td data-label="Job">Engineer</td>
-        </tr>
-        <tr>
-            <td data-label="Name">Elyse</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Designer</td>
-            <td data-label="Job">Designer</td>
-            <td data-label="Job">Designer</td>
-        </tr>
+        {% endfor %}
         </tbody>
         <tfoot>
             <tr>
