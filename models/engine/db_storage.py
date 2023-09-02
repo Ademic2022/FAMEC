@@ -73,7 +73,11 @@ class DBStorage:
         session = self.__create_session()
         if obj:
             session.delete(obj)
-
+    def update(self, obj):
+        session = self.__create_session()
+        session.merge(obj)  # Use the merge method to update the object
+        session.commit()
+        
     def find_user_by_email(self, email):
         from models.user import User
         session = self.__create_session()

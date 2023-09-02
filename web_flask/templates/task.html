@@ -64,7 +64,7 @@
                 pending_color
                 {% else %}
                 success_color
-                {% endif %}">{% if task.status == 0 %}PENDING{% endif %}</td>
+                {% endif %}">{% if task.status == 0 %}PENDING{% else %}COMPLETED{% endif %}</td>
                 <td data-label="status">
                     <div class="ui buttons">
                         <button class="ui positive button active update-task-button" data-task-id="{{ task.id }}">Update</button>
@@ -160,7 +160,7 @@
 <div class="ui modal update_task">
     <div class="header">Update Task</div>
     <div class="content">
-        <form class="ui form" method="POST" action="">
+        <form class="ui form" action="{{ url_for('views.tasks') }}">
             <input type="text" name="task_id" hidden>
             <div class="field">
                 <label>Task Title</label>
@@ -191,11 +191,12 @@
                   <label>Task Completed</label>
                 </div>
             </div>
+        <!-- </form> -->
     </div>
-    <div class="actions">
-        <button class="ui positive button" type="submit">Update Task</button>
-        <div class="ui negative button">Cancel</div>
-    </div>
+        <div class="actions">
+            <button class="ui positive button" type="submit">Update Task</button>
+            <div class="ui negative button">Cancel</div>
+        </div>
     </form>
 </div>
 
