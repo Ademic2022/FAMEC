@@ -2,6 +2,8 @@
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
+from sqlalchemy import func
+
 from models.base_model import Base
 
 class DBStorage:
@@ -77,7 +79,11 @@ class DBStorage:
         session = self.__create_session()
         session.merge(obj)  # Use the merge method to update the object
         session.commit()
-        
+    def count(self, mod_class):
+        session = self.__create_session()
+        count = session.query(func.count(mod_class.id)).scalar() # count the objects in the database
+        return count
+
     def find_user_by_email(self, email):
         from models.user import User
         session = self.__create_session()
