@@ -4,11 +4,6 @@ from models.base_model import BaseModel, Base
 import models
 from enum import Enum as PythonEnum
 
-class PriorityEnum(PythonEnum):
-    HIGH = "HIGH"
-    MEDIUM = "MEDIUM"
-    LOW = "LOW"
-
 class Task(BaseModel, Base):
     """ Task model to describe the tasks for users"""
     if models.storage_t == "db":
@@ -17,7 +12,7 @@ class Task(BaseModel, Base):
         title = Column(String(255), nullable=False)
         description = Column(String(1000))
         due_date = Column(String(50))
-        priority = Column(Enum(PriorityEnum), default=PriorityEnum.MEDIUM)
+        priority = Column(Integer, default=1)
         status = Column(Integer, default=0)
         
         # Define the foreign key relationship to the User model

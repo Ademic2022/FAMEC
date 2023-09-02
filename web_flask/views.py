@@ -46,12 +46,18 @@ def tasks():
             status = 1
         else:
             status = 0
+        if priority == 'High':
+            priority = 2
+        elif priority == 'Medium':
+            priority = 1
+        else:
+            priority = 0
 
         if len(description) < 5:
-            flash('please give more detailed discription', category='error')
+            flash('please give more detailed description', category='error')
         elif len(task_title) < 2:
             flash('detailed title is required', category='error')
-        elif due_date is None:
+        elif len(due_date) < 1:
             flash('please set due date', category='error')
         else:
             new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id, status = status)
@@ -101,50 +107,50 @@ def delete_task():
             return jsonify({'message': 'Task deleted successfully'}), 200
 
 @views.route('/update-task/<string:task_id>', methods=['GET', 'POST'])
-def get_task(task_id):
+def update_task(task_id):
     # Fetch the task from the database based on task_id
+    task = storage.get_task_by_id(task_id)
+    
+    if not task:
+        # Handle the case where the task doesn't exist or an error occurs
+        # You can return an error message or appropriate status code
+        flash("Task not found or error fetching task", category='error')
+        return redirect(url_for('views.tasks'))
+    
     if request.method == 'POST':
-        task = storage.get_task_by_id(task_id)
-        if task:
-            # Retrieve form data
-            task_title = request.form.get('task_title')
-            description = request.form.get('description')
-            priority = request.form.get('priority')
-            due_date = request.form.get('due_date')
-            status = request.form.get('status')
-            if status:
-                status = 1
-            else:
-                status = 0
-
-            # Update task attributes as needed
-            task.title = task_title
-            task.description = description
-            task.priority = priority
-            task.due_date = due_date
-            task.status = status  # Update the task status
-
-            # Save the updated task
-            storage.save(task)
-            flash('Task updated Successfully', category='success')
-
-            return redirect(url_for('views.tasks'))
-            
-    else:
-        task = storage.get_task_by_id(task_id)
-
-        if task:
-            # Convert the task data to a dictionary and return it as JSON
-            task_data = {
-                'title': task.title,
-                'description': task.description,
-                'priority': task.priority.value,
-                'due_date': task.due_date,
-                'id': task.id
-                # Add other task attributes here
-            }
-            return jsonify(task_data)
+        # Retrieve form data from the POST request
+        task_title = request.form.get('task_title')
+        description = request.form.get('description')
+        priority = request.form.get('priority')
+        due_date = request.form.get('due_date')
+        status = request.form.get('status')
+        
+        # Convert the 'status' value to an integer
+        if status:
+            status = 1
         else:
-            # Handle the case where the task doesn't exist or an error occurs
-            # You can return an error message or appropriate status code
-            flash("error fetching task", category='error')
+            status = 0
+
+        # Update task attributes
+        task.title = task_title
+        task.description = description
+        task.priority = priority
+        task.due_date = due_date
+        task.status = status
+        
+        # Save the updated task
+        storage.update(task)
+        flash('Task updated Successfully', category='success')
+    
+    # If the request is a GET request (e.g., to fetch task data for AJAX update)
+    task_data = {
+        'title': task.title,
+        'description': task.description,
+        'priority': task.priority,
+        'due_date': task.due_date,
+        'status': task.status,
+        'id': task.id
+        # Add other task attributes here
+    }
+    
+    return jsonify(task_data)

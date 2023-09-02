@@ -80,12 +80,12 @@ $(function() {
 });
 
 $(document).ready(function() {
+    let taskId; // Define taskId in the outer scope
     $('.update-task-button').click(function() {
         // Get the task ID from the data attribute
-        const taskId = $(this).data('task-id');
+        taskId = $(this).data('task-id');
         
         // You can now use taskId to fetch the task data via an AJAX request or other means
-        // Populate the update modal with the task data and open the modal
         // For example, you can use AJAX to fetch the task data and populate the modal dynamically
         $.ajax({
             url: '/update-task/' + taskId.toString(), // Adjust the URL to your Flask route for fetching task data
@@ -107,4 +107,41 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('.update_task form').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        // Debug: Check if the function is called
+        console.log('Form submit event fired');
+    
+        // Serialize the form data into a format that can be sent as POST data
+        const formData = $(this).serialize();
+    
+        // Debug: Check if formData is correctly serialized
+        console.log('Form data:', formData);
+    
+        // Send a POST request to update the task
+        fetch(`/update-task/${taskId}`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+        .then((response) => {
+            if (response.ok) {
+             // Reload the page
+                window.location.href = '/tasks';
+            } else {
+                // Handle the case where the update was not successful
+                console.error('Error updating task:', response.statusText);
+            }
+        })
+        .catch((error) => {
+            // Handle any errors here
+            console.error('Error updating task:', error);
+        });
+    });
+    
+    
 });
