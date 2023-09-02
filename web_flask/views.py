@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, url_for, request, flash, redirect
+from flask import Blueprint, render_template, url_for, request, flash, redirect, jsonify
 from flask_login import login_required, current_user
 from models import storage
 from models.task import Task
+import json
+from werkzeug.routing import UUIDConverter
 
 
 views = Blueprint('views', __name__)
@@ -39,6 +41,11 @@ def tasks():
         priority = request.form.get('priority')
         due_date = request.form.get('due_date')
         user_id = current_user.id
+        status = request.form.get('status')
+        if status:
+            status = 1
+        else:
+            status = 0
 
         if len(description) < 5:
             flash('please give more detailed discription', category='error')
@@ -47,7 +54,7 @@ def tasks():
         elif due_date is None:
             flash('please set due date', category='error')
         else:
-            new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id)
+            new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id, status = status)
             storage.new(new_task)
             storage.save()
             flash('New Task added Successfully', category='success')
@@ -74,3 +81,70 @@ def family():
 @login_required
 def settings():
     return render_template('settings.html', user = current_user)
+
+@views.route('/delete-task', methods=['POST'])
+def delete_task():
+    data = json.loads(request.data)
+    taskId = data['taskId']
+    task = storage.get_task_by_id(taskId)
+
+    if not task:
+        return jsonify({'error': 'Task not found'}), 404
+    else:
+        if task.user_id == current_user.id:
+            # Delete the task from the database (you should have a method for this)
+            storage.delete(task)
+            storage.save()
+
+            # Return a success message
+            flash('Task Deleted Successfully', category='success')
+            return jsonify({'message': 'Task deleted successfully'}), 200
+
+@views.route('/update-task/<string:task_id>', methods=['GET', 'POST'])
+def get_task(task_id):
+    # Fetch the task from the database based on task_id
+    if request.method == 'POST':
+        task = storage.get_task_by_id(task_id)
+        if task:
+            # Retrieve form data
+            task_title = request.form.get('task_title')
+            description = request.form.get('description')
+            priority = request.form.get('priority')
+            due_date = request.form.get('due_date')
+            status = request.form.get('status')
+            if status:
+                status = 1
+            else:
+                status = 0
+
+            # Update task attributes as needed
+            task.title = task_title
+            task.description = description
+            task.priority = priority
+            task.due_date = due_date
+            task.status = status  # Update the task status
+
+            # Save the updated task
+            storage.save(task)
+            flash('Task updated Successfully', category='success')
+
+            return redirect(url_for('views.tasks'))
+            
+    else:
+        task = storage.get_task_by_id(task_id)
+
+        if task:
+            # Convert the task data to a dictionary and return it as JSON
+            task_data = {
+                'title': task.title,
+                'description': task.description,
+                'priority': task.priority.value,
+                'due_date': task.due_date,
+                'id': task.id
+                # Add other task attributes here
+            }
+            return jsonify(task_data)
+        else:
+            # Handle the case where the task doesn't exist or an error occurs
+            # You can return an error message or appropriate status code
+            flash("error fetching task", category='error')

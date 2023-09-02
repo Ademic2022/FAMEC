@@ -1,9 +1,6 @@
-from os import getenv
 from sqlalchemy.orm import relationship
-from sqlalchemy import (create_engine)
 from sqlalchemy import Column, String, Integer, ForeignKey
 from models.base_model import BaseModel, Base
-from datetime import datetime
 import models
 import hashlib
 from flask_login import UserMixin
@@ -14,7 +11,7 @@ class User(UserMixin, BaseModel, Base):
     """ Represent the user details for the user class"""
     if models.storage_t == "db":
         __tablename__ = 'users'
-        __table_arg__ = {"mysql_default_charset": "latin1"}
+        __table_args__ = {"mysql_default_charset": "latin1"}
         firstname = Column(String(128), nullable=False)
         lastname = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)

@@ -85,6 +85,12 @@ class DBStorage:
         session = self.__create_session()
         query = session.query(User).filter_by(id=id).first()
         return query
+    
+    def get_task_by_id(self, id):
+        from models.task import Task
+        session = self.__create_session()
+        query = session.query(Task).filter_by(id=id).first()
+        return query
 
     def reload(self):
         Base.metadata.create_all(self.__engine)

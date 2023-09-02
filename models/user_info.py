@@ -1,6 +1,3 @@
-from os import getenv
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import (create_engine)
 from sqlalchemy import Column, String, Integer, JSON
 from models.base_model import BaseModel, Base
 import models
