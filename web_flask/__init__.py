@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from datetime import timedelta
 from models import storage
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'famec'
@@ -22,6 +23,13 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return storage.find_user_by_id(id)
+
+    # Define the custom filter function
+    def enum_to_string(enum_value):
+        return str(enum_value).split('.')[-1]
+    # Register the custom filter in the Flask app
+    app.jinja_env.filters['enum_to_string'] = enum_to_string
+
 
     return app
 

@@ -2,22 +2,13 @@ window.onload = function(){
     const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.querySelector("#btn");
     const searchBtn = document.querySelector(".bx-search")
-
+    // SEMANTIC JS
     $('.ui.dropdown').dropdown();
 
     $('.message .close').on('click', function() {
         $(this)
           .closest('.message')
           .transition('fade');
-    });
-
-    $(function(){
-        $("#new_task").click(function(){
-            $(".new_task").modal('show');
-        });
-        $(".new_task").modal({
-            closable: true
-        });
     });
 
     closeBtn.addEventListener("click",function(){
