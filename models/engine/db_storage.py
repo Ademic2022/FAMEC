@@ -79,9 +79,10 @@ class DBStorage:
         session = self.__create_session()
         session.merge(obj)  # Use the merge method to update the object
         session.commit()
-    def count(self, mod_class):
+
+    def count(self, obj):
         session = self.__create_session()
-        count = session.query(func.count(mod_class.id)).scalar() # count the objects in the database
+        count = session.query(func.count(obj.id)).scalar() # count the objects in the database
         return count
 
     def find_user_by_email(self, email):
