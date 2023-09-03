@@ -4,9 +4,13 @@ from models import storage
 from models.task import Task
 import json
 from werkzeug.routing import UUIDConverter
-
+from .context_processors import inject_globals
 
 views = Blueprint('views', __name__)
+
+@views.context_processor
+def inject_global():
+    return inject_globals()
 
 
 """Route to Landing PAGE"""
@@ -24,7 +28,12 @@ def landing_page():
 @views.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', user = current_user)
+    # Assuming you have a datetime field named 'created_at' in your Task model
+    user = current_user
+    user_tasks = user.tasks
+    recent_tasks = user_tasks[:3]  
+    
+    return render_template('dashboard.html', user=user, recent_tasks=recent_tasks)
 
 @views.route('/users')
 @login_required
@@ -65,7 +74,7 @@ def tasks():
             storage.save()
             flash('New Task added Successfully', category='success')
             return redirect(url_for('views.tasks'))
-
+    task_counter = storage.count(Task)
     return render_template('task.html', user = current_user)
 
 @views.route('/notification')
@@ -130,6 +139,13 @@ def update_task(task_id):
             status = 1
         else:
             status = 0
+
+        if priority == 'High':
+            priority = 2
+        elif priority == 'Medium':
+            priority = 1
+        else:
+            priority = 0
 
         # Update task attributes
         task.title = task_title
