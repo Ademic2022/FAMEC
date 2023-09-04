@@ -1,7 +1,7 @@
-from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, Integer, ForeignKey
 from models.base_model import BaseModel, Base
 import models
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Integer, ForeignKey
 import hashlib
 from flask_login import UserMixin
 
@@ -22,10 +22,12 @@ class User(UserMixin, BaseModel, Base):
         state = Column(String(30), nullable=False)
         zipcode = Column(Integer(), nullable=False)
         birthday = Column(String(10), nullable=True)
-        # family_members = Column(String(255), nullable=True)
-
         # Create a one-to-many relationship to the Task model
         tasks = relationship('Task', back_populates='user')
+        # Create a many-to-one relationship to the User model to represent family owner
+        family_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('families.id'), nullable=True)
+        family = relationship('Family', back_populates='members', foreign_keys=[family_id])
+
     else:
         email = ""
         password = ""

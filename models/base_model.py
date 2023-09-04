@@ -16,7 +16,7 @@ class BaseModel(Base):
     """ The basemodel class that all other classes will inherit from """
     __abstract__ = True  # Marks this class as abstract, preventing SQLAlchemy from creating a table for it
 
-    id = Column(String(60), primary_key=True, nullable=False, unique=True)
+    id = Column(String(60, collation='utf8mb4_unicode_ci'), primary_key=True, nullable=False, unique=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow)
 

@@ -12,3 +12,23 @@ document.addEventListener ('DOMContentLoaded', ()=>{
     inputAutoFill('country', 'country');
     inputAutoFill('state', 'state');
 })
+
+ // JavaScript to show/hide family fields based on user's choice
+ const createFamilyRadio = document.getElementById('create_family');
+ const joinFamilyRadio = document.getElementById('join_family');
+ const newFamilyFields = document.getElementById('new_family_fields');
+ const existingFamilyFields = document.getElementById('existing_family_fields');
+
+ createFamilyRadio.addEventListener('change', function() {
+     if (createFamilyRadio.checked) {
+         newFamilyFields.style.display = 'block';
+         existingFamilyFields.style.display = 'none';
+     }
+ });
+
+ joinFamilyRadio.addEventListener('change', function() {
+     if (joinFamilyRadio.checked) {
+         existingFamilyFields.style.display = 'block';
+         newFamilyFields.style.display = 'none';
+     }
+ });

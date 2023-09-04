@@ -1,7 +1,8 @@
-from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, Enum, ForeignKey, Integer
 from models.base_model import BaseModel, Base
 import models
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Enum, ForeignKey, Integer
+
 from enum import Enum as PythonEnum
 
 class Task(BaseModel, Base):
@@ -16,8 +17,19 @@ class Task(BaseModel, Base):
         status = Column(Integer, default=0)
         
         # Define the foreign key relationship to the User model
-        user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
-        user = relationship('User', back_populates='tasks')
+        user_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('users.id'), nullable=False)
+        # Create a many-to-one relationship to the User model
+        # user = relationship('User', back_populates='tasks')
+
+        # Define the foreign key relationship to the Family model for family_id
+        family_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('families.id'), nullable=False)
+        # Create a many-to-one relationship to the Family model
+        # family = relationship('Family', back_populates='tasks')
+
+        user = relationship('User', back_populates='tasks', foreign_keys=[user_id])
+        family = relationship('Family', back_populates='tasks', foreign_keys=[family_id])
+
+
     else:
         title = ""
         description = ""

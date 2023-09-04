@@ -85,6 +85,7 @@ class DBStorage:
         count = session.query(func.count(obj.id)).scalar() # count the objects in the database
         return count
 
+
     def find_user_by_email(self, email):
         from models.user import User
         session = self.__create_session()
@@ -102,6 +103,32 @@ class DBStorage:
         session = self.__create_session()
         query = session.query(Task).filter_by(id=id).first()
         return query
+    def get_task(self, id):
+        from models.task import Task
+        session = self.__create_session()
+        query = session.query(Task).filter_by(family_id=id).all()
+        return query
+    
+    def get_family_by_id(self, id):
+        from models.family import Family
+        session = self.__create_session()
+        query = session.query(Family).filter_by(owner_id=id).first()
+        return query
+
+    # def find_item_by_id(self, model_name, id):
+    #     try:
+    #         # Attempt to import the model dynamically
+    #         model_module = __import__(f'models.{model_name}', fromlist=[model_name])
+    #         model_class = getattr(model_module, model_name)
+    #     except ImportError:
+    #         return None  # Model import failed
+
+    #     session = self.__create_session()
+    #     query = session.query(model_class).filter_by(id=id).first()
+    #     # USAGE
+    #     # user = find_item_by_id('User', user_id)
+    #     # task = find_item_by_id('Task', task_id)
+    #     return query
 
     def reload(self):
         Base.metadata.create_all(self.__engine)

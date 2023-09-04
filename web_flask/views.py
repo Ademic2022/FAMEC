@@ -7,12 +7,11 @@ from werkzeug.routing import UUIDConverter
 from .context_processors import inject_globals
 
 views = Blueprint('views', __name__)
-
 @views.context_processor
 def inject_global():
     return inject_globals()
 
-
+# Define a sample route that uses the family_tasks variable
 """Route to Landing PAGE"""
 @views.route('/')
 def landing_page():
@@ -50,6 +49,7 @@ def tasks():
         priority = request.form.get('priority')
         due_date = request.form.get('due_date')
         user_id = current_user.id
+        family_id = current_user.family_id
         status = request.form.get('status')
         if status:
             status = 1
@@ -69,13 +69,13 @@ def tasks():
         elif len(due_date) < 1:
             flash('please set due date', category='error')
         else:
-            new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id, status = status)
+            new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id, family_id=family_id, status = status)
             storage.new(new_task)
             storage.save()
             flash('New Task added Successfully', category='success')
             return redirect(url_for('views.tasks'))
-    task_counter = storage.count(Task)
-    return render_template('task.html', user = current_user)
+    family_tasks = current_user.family.tasks
+    return render_template('task.html', user = current_user, family_tasks=family_tasks)
 
 @views.route('/notification')
 @login_required
