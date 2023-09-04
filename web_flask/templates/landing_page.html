@@ -21,7 +21,7 @@
                     <li><a class="features" href="#features" style="--i:1;" id="dropdown">features <span><i class='bx bx-chevron-down'></i></span></a></li>
                     <li><a class="nav-btn"  href="#about" style="--i:2;">about us</a></li>
                     <li><a class="solution"  href="#solution" style="--i:3;" id="dropdown">solutions <span><i class='bx bx-chevron-down'></i></span></a></li>
-                    <li><a class="nav-btn"  href="#blog" style="--i:4;">Blog</a></li>
+                    <li><a class="nav-btn"  href="#services" style="--i:4;">Services</a></li>
                     <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact us</a></li>
                 </ul>
             </nav>
@@ -128,26 +128,30 @@
             </div>
         </div>
         <div class="owl-carousel owl-theme">
-            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[0] }}');">
+            <div class="section-content" style="background-image: url('{{ images[0] }}');">
                 <div class="slide-1"></div>
                 <div class="section-article">
-                    <h1>Organize Your Home</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
+                    <h1>Master Your Home, Reclaim Your Time with Famec</h1>
+                    <p>
+                        Streamline your household chores, simplify family planning, and create more quality time for yourself. 
+                        Famec is the ultimate home management app designed exclusively for moms. 
+                        Say goodbye to stress and hello to a well-organized, balanced life. 
+                    </p>
                     <button>Learn</button>
                 </div>
             </div>
-            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[1] }}');">
+            <div class="section-content" style="background-image: url('{{ images[1] }}');">
                 <div class="section-article">
                     <h1>Let us plan your home</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
+                    <p><strong>Effortlessly Delegate Chores:</strong> Assign tasks to family members with just a few taps, ensuring that everyone contributes to a clean and tidy home.</p>
                     <button>Learn</button>
                 </div>
             </div>
-            <div class="section-content" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ images[2] }}');">
+            <div class="section-content" style="background-image: url('{{ images[2] }}');">
                 <div class="section-article">
                     <h1>learn about us</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, corporis ad adipisci neque, incidunt vero similique id quia soluta ducimus velit cupiditate omnis. Facere, iure.</p>
-                    <button>Learn</button>
+                    <p>Discover how Famec can transform your daily routine.</p>
+                    <a href="#services"><button>Learn</button></a>
                 </div>
             </div>
         </div>
@@ -155,11 +159,11 @@
     <section id="about">
         <div class="about-container">
             <div class="about-sections">
-                <h1>about us</h1>
+                <!-- <h1>about</h1> -->
             </div>
             <div class="about-sections">
                 <div class="about-hma" style="background: url('{{ images[3] }}');"></div>
-                <div class="about-hma">
+                <!-- <div class="about-hma">
                     <h2>FAMEC in Action</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia velit 
@@ -169,7 +173,7 @@
                         voluptatum reprehenderit expedita nesciunt illum aperiam dolores debitis nobis 
                         sunt, aliquam, perspiciatis labore, nemo veniam.
                     </p>
-                </div>
+                </div> -->
             </div>
             <div class="about-sections">
                 <div class="about-sections-contents animate">
@@ -211,8 +215,21 @@
             </div>
         </div>
     </section>
-    <section id="blog">
-        <h1 class="content">Coming Soon</h1>
+    <section id="services">
+        <div class="services" style="background: url('{{ images[5] }}');">
+            <div class="services-content">
+                <h1>Get Started With FAMEC</h1>
+                <div class="form">
+                    <input type="text" placeholder="Enter your Email...">
+                    <a href="{{ url_for('auth.register') }}"><button type="submit">Register Here</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="services" style="background: url('{{ images[7] }}');">
+            <div class="services main"></div>
+            <div class="services main"></div>
+        </div>
+        <div class="services" style="background: url('{{ images[6] }}');"></div>
     </section>
     <section id="contact">
         <div class="contact-container">
