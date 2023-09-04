@@ -52,7 +52,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for task in user.tasks %}
+        {% for task in family_tasks %}
             {% if task and task.status == 0 %}
             <tr>
                 <td data-label="title">{{ task.title }}</td>
@@ -101,7 +101,7 @@
             </tr>
           </thead>
         <tbody>
-            {% for task in user.tasks %}
+            {% for task in family_tasks %}
                 {% if task and task.status == 1 %}
                 <tr>
                     <td>{{ task.title }}</td>
@@ -119,7 +119,7 @@
                 </tr>
                 {% endif %}
             {% endfor %}
-            {% if user.tasks|length == 0 %}
+            {% if family_tasks|length == 0 %}
             <tr>
                 <td colspan="6">
                     No Completed task yet. <span class="text clickable" id="new_task"><a>Click here</a></span> to add a new task.
