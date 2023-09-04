@@ -570,6 +570,12 @@ BLOG STYLES
     background: #fff;
     color: #000;
 }
+.services-main {
+    width: 50%;
+    height: 100%;
+    background-size:cover !important;
+    background-repeat: no-repeat !important;
+}
 /* 
 ======================================================================================
 END OF BLOG STYLES
