@@ -156,7 +156,7 @@
                 </a>
                 <a class="item"  href="{{ url_for('views.tasks') }}">
                     <i class='bx bx-task'></i> Tasks
-                  <div class="floating ui circular teal label">{{ task_counter }}</div>
+                    <div class="floating ui circular teal label">{{ task_counter }}</div>
                 </a> 
             </div>
         </div>
@@ -198,5 +198,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/base.js')  }}"></script>
     {% block task_script %}{% endblock %}
+    {% block settings_script %}{% endblock %}
 </body>
 </html>

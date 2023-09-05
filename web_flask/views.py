@@ -93,12 +93,22 @@ def events():
 @views.route('/family')
 @login_required
 def family():
-    return render_template('family.html', user = current_user)
+    profile_image = [
+        url_for('static', filename='images/avatar.png')
+    ]
+    user_family_id = current_user.family_id
+    families = storage.get_all_families(user_family_id)
+    return render_template('family.html', user = current_user, image=profile_image, families=families)
 
 @views.route('/settings')
 @login_required
 def settings():
-    return render_template('settings.html', user = current_user)
+    profile_image = [
+        url_for('static', filename='images/avatar.png')
+    ]
+    user_family_id = current_user.family_id
+    family_name = storage.find_family_name(user_family_id)
+    return render_template('settings.html', user = current_user, image=profile_image, family=family_name)
 
 @views.route('/delete-task', methods=['POST'])
 def delete_task():
