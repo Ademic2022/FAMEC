@@ -80,16 +80,31 @@ class DBStorage:
         session.merge(obj)  # Use the merge method to update the object
         session.commit()
 
-    def count(self, obj):
+    # def count(self, obj):
+    #     session = self.__create_session()
+    #     count = session.query(func.count(obj.id)).scalar() # count the objects in the database
+    #     return count
+    def count(self, value):
+        from models.task import Task
         session = self.__create_session()
-        count = session.query(func.count(obj.id)).scalar() # count the objects in the database
+        query = session.query(Task).filter_by(family_id=value).all()
+        
+        count = len(query)  # count the objects in the list
         return count
+
+
 
 
     def find_user_by_email(self, email):
         from models.user import User
         session = self.__create_session()
         query = session.query(User).filter_by(email=email).first()
+        return query
+    
+    def find_family_name(self, id):
+        from models.family import Family
+        session = self.__create_session()
+        query = session.query(Family).filter_by(id=id).first()
         return query
 
     def find_user_by_id(self, id):
@@ -107,6 +122,12 @@ class DBStorage:
         from models.task import Task
         session = self.__create_session()
         query = session.query(Task).filter_by(family_id=id).all()
+        return query
+    
+    def get_all_families(self, id):
+        from models.user import User
+        session = self.__create_session()
+        query = session.query(User).filter_by(family_id=id).all()
         return query
     
     def get_family_by_id(self, id):
