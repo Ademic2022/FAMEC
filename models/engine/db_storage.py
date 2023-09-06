@@ -80,18 +80,31 @@ class DBStorage:
         session.merge(obj)  # Use the merge method to update the object
         session.commit()
 
-    # def count(self, obj):
-    #     session = self.__create_session()
-    #     count = session.query(func.count(obj.id)).scalar() # count the objects in the database
-    #     return count
-    def count(self, value):
-        from models.task import Task
+    def count_distinct_notifications(self, family_id):
+        from models.notification import Notification  # Import the Notification model
+        session = self.__create_session()  # Create a session
+
+        # Query for distinct notifications by content and family_id
+        query = session.query(func.count(Notification.id.distinct())).filter(
+            Notification.recipient_id == family_id,
+            Notification.is_read == False  # Adjust this condition as needed
+        )
+
+        count = query.scalar()  # Get the count of distinct notifications
+        return count  # Return the count
+
+    def count(self, class_name, id):
+        import importlib
+        # Import the module containing the class dynamically
+        module = importlib.import_module('models.' + class_name.lower())
+        # Get the class from the module
+        cls = getattr(module, class_name)
+
         session = self.__create_session()
-        query = session.query(Task).filter_by(family_id=value).all()
+        query = session.query(cls).filter_by(family_id=id).all()
         
         count = len(query)  # count the objects in the list
         return count
-
 
 
 
@@ -134,6 +147,12 @@ class DBStorage:
         from models.family import Family
         session = self.__create_session()
         query = session.query(Family).filter_by(owner_id=id).first()
+        return query
+    
+    def get_notifications(self, id):
+        from models.notification import Notification
+        session = self.__create_session()
+        query = session.query(Notification).filter_by(recipient_id=id).all()
         return query
 
     # def find_item_by_id(self, model_name, id):

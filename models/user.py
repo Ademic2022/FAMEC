@@ -1,4 +1,5 @@
 from models.base_model import BaseModel, Base
+from models.notification import Notification
 import models
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, ForeignKey
@@ -27,6 +28,9 @@ class User(UserMixin, BaseModel, Base):
         # Create a many-to-one relationship to the User model to represent family owner
         family_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('families.id'), nullable=True)
         family = relationship('Family', back_populates='members', foreign_keys=[family_id])
+
+        sent_notifications = relationship("Notification", foreign_keys=[Notification.sender_id], back_populates="sender")
+        received_notifications = relationship("Notification", foreign_keys=[Notification.recipient_id], back_populates="recipient")
 
     else:
         email = ""
