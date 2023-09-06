@@ -125,15 +125,15 @@
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
-            <div class="ui right floated dropdown labeled icon button">
+            <div class="ui right floated floating dropdown labeled icon button">
                 <div class="floated">
                     <img class="ui avatar image" src="{{ url_for('static', filename='images/avatar.png')  }}">
                     {% if user.is_authenticated %}
                         {{ user.firstname }}
                     {% endif %}
                 </div>
-                <div class="menu">
-                  <div class="header ui menu">
+                <div class="scrolling menu">
+                  <div class="header">
                     Navigation Menu
                   </div>
                   <div class="scrolling menu">
