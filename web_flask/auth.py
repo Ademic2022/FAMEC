@@ -3,7 +3,7 @@ from models.user import User
 from models.family import Family
 from flask import Blueprint, render_template, url_for,request, flash, redirect
 from flask_login import logout_user, login_user
-import string, random
+# import string, random
 
 import hashlib
 import re
@@ -28,7 +28,6 @@ def login():
         user = storage.find_user_by_email(email)
         if user:
             if hash_password == user.password:
-                # flash('Logged in successfully', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.dashboard'))
             else: 

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, url_for, request, flash, redirect,
 from flask_login import login_required, current_user
 from models import storage
 from models.task import Task
+from models.notification import Notification
 import json
 from werkzeug.routing import UUIDConverter
 from .context_processors import inject_globals
@@ -75,6 +76,25 @@ def tasks():
             new_task = Task(title=task_title, description=description, due_date=due_date, user_id=user_id, family_id=family_id, status = status)
             storage.new(new_task)
             storage.save()
+
+            # Get all family members (excluding the creator)
+            family_members = storage.get_all_families(new_task.family_id)
+            for member in family_members:
+                # print(member.firstname)
+                if member.id != new_task.user_id:  # Exclude the creator
+                    content = f"A new task '{new_task.title}' has been created in your family."
+                    notification = Notification(
+                        sender=current_user,
+                        recipient=member,  # Use the member's ID as the recipient
+                        content=content,
+                        family_id=new_task.family_id
+                    )
+                    storage.new(notification)
+
+            storage.save()
+                        
+
+
             flash('New Task added Successfully', category='success')
             return redirect(url_for('views.tasks'))
     family_tasks = current_user.family.tasks
@@ -83,7 +103,12 @@ def tasks():
 @views.route('/notification')
 @login_required
 def notification():
-    return render_template('notification.html', user = current_user)
+    profile_image = [
+        url_for('static', filename='images/avatar.png')
+    ]
+    user_id = current_user.id
+    notifications = storage.get_notifications(user_id)
+    return render_template('notification.html', user = current_user, profile_image=profile_image, notifications=notifications)
 
 @views.route('/events')
 @login_required

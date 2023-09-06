@@ -1,24 +1,19 @@
-from os import getenv
-from sqlalchemy.orm import sessionmaker, scoped_session, relationship
-from sqlalchemy import (create_engine)
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from models.base_model import BaseModel, Base
-from datetime import datetime
-import models
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Boolean, ForeignKey
+from models.base_model import BaseModel
 
 
-class Notification(BaseModel, Base):
-    if models.storage_t == "db":
-        __tablename__ = "notifications"
-        __table_arg__ = {"mysql_default_charset": "latin1"}
-        id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-        user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-        message = Column(String(255), nullable=False)
-        notification_status = Column(String(128), nullable=False, default='pending')
-        user = relationship("User", backref="notifications")
-        
-    else:
-        user_id = ""
-        message = ""
-        notification_status = ""
+class Notification(BaseModel):
+    __tablename__ = 'notifications'
+    __table_args__ = {"mysql_default_charset": "latin1"}
+    
+    sender_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('users.id'), nullable=False)
+    recipient_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('users.id'), nullable=False)
+    content = Column(String(255), nullable=False)
+    is_read = Column(Boolean, default=False)
+    family_id = Column(String(60, collation='utf8mb4_unicode_ci'), ForeignKey('families.id'), nullable=False)
+
+    sender = relationship("User", foreign_keys=[sender_id], back_populates="sent_notifications")
+    recipient = relationship("User", foreign_keys=[recipient_id], back_populates="received_notifications")
+    family = relationship("Family", back_populates="notifications")
         
