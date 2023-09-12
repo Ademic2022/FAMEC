@@ -19,12 +19,7 @@ def landing_page():
     background_image_urls = [
         url_for('static', filename='images/home1.jpg'),
         url_for('static', filename='images/home2.jpg'),
-        url_for('static', filename='images/home3.jpg'),
-        url_for('static', filename='images/famec_landn_1.jpg'),
-        url_for('static', filename='images/Famec_logo_white.png'),
-        url_for('static', filename='images/famec_landn_2.jpg'),
-        url_for('static', filename='images/famec_landn_3.jpg'),
-        url_for('static', filename='images/family.jpg')
+        url_for('static', filename='images/home3.jpg')
     ]
     return render_template('landing_page.html', images = background_image_urls)
 
