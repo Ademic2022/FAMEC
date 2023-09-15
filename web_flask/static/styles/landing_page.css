@@ -5,7 +5,7 @@
     --color-second:#ff91a4;
     --color-white:#fff;
     --color-body:#e4e9f7;
-    --color-light:#e0e0e0;
+    --color-grey:#969494;
     --font-default: "Poppins", sans-serif;
   }
 /* styles.css */
@@ -36,12 +36,14 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     z-index: 1000;
+    height: 100px;
 }
 
 header.height {
@@ -102,18 +104,30 @@ header.height a::after {
 header a.active::after {
     transform: scale(1);
 }
-
+.menu-icon, .button-hw {
+    display: none;
+}
+.button-fw {
+    display: block;
+}
+#check {
+    display: none;
+}
 /* 
 ======================================================================================
 FEATURE DROPDOWN 
 ======================================================================================
 */
+/* mobile option for mobile */
+.mobile-option {
+    display: none;
+}
 .dropdown{
     height: max-content;
     background-color: #fff;
     position: fixed;
     width: 100%;
-    top: 6.5em;
+    top: 6em;
     z-index: 1000;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -131,6 +145,9 @@ FEATURE DROPDOWN
     align-items: center;
     justify-content: center;
     border-bottom-left-radius: 30px;
+}
+.features, .solution{
+    margin-left: 10px;
 }
 .bx{
     font-size: 20px;
@@ -305,9 +322,7 @@ header.height .loginBtn:hover {
     transform: scale(1);
     transform-origin: left;
 }
-.mobile-header {
-    display: none;
-}
+
 /* 
 ======================================================================================
 OWL CAROUSEL
@@ -759,26 +774,146 @@ MEDIA QUERIES
 */
 /* Media query for screens with a maximum width of 767px (typical for mobile devices) */
 @media (max-width: 767px) {
-    #header {
+    #check:checked~.menu-icon #menu-icon {
         display: none;
     }
-    .mobile-header {
+    .menu-icon #close-icon {
+        display: none;
+    }
+    #check:checked~.menu-icon #close-icon {
+        display: block;
+    }
+    #header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 60px;
         padding: 0 10px;
     }
-    .mobile-header img {
-        background-size: contain;
-        width: 60px;
-        height: 60px;
+    header ul {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .logo img {
+        width: 20%;
+        height: 20%;
+    }
+    .button-fw {
+        display: none;
+    }
+    .menu-icon {
+        display: block;
+        position: absolute;
+        font-size: 40px;
+        right: 20px;
     }
     .menu-icon i {
         font-size: 40px;
     }
+    #header .navigation {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        transition: .3s ease;
+        z-index: 999;
+        background: var(--color-second);
+        display: block;
 
+    }
+    #check:checked~.navigation {
+        height: 100vh;
+    }
+    header .navigation a span {
+        margin-left: 260px;
+    }
+    .navigation li{
+        margin-right: 20px;
+        position: relative;
+        width: 100%;
+    }
+    .navigation li a {
+        transform: translateY(-50px);
+    }
+    #check:checked~.navigation li a{
+        transform: translateY(0);
+        transition-delay: calc(.15s * var(--i));
+    }
+    .button-hw {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .navigation ul a button.loginBtn {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .navigation li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: .2px;
+        background-color: var(--color-grey);
+    }
+
+    .mobile-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mobile-option .menu-icons {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mobile-option .menu-icons i {
+        font-size: 40px;
+    }
+
+    .dropdown {
+        top: 0;
+        border-radius: 0;
+        width: 100%;
+    }
+    .dropdown-menu {
+        width: 100%;
+        margin: 0;
+    }
+    .dropdown-content {
+        width: 100%;
+        margin: 0;
+        text-emphasis: none;
+    }
+    .dropdown-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    .dropdown-content:nth-child(1) h4 {
+        padding-top: 0;
+        text-align: center;
+        font-size: 15px;
+        margin: 0 auto;
+    }
+    .extend-dropdown {
+        width: 100%;
+        height: 100vh;
+        padding: 15px;
+    }
+    .extend-dropdown-content {
+        margin: 0;
+    }
+    .extend-dropdown-title h4 {
+        margin-top: 0;
+    }
 
 
     

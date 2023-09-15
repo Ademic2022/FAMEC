@@ -16,6 +16,11 @@
             <a class="nav-btn" href="#home">
                 <div class="logo"><img src="{{ url_for('static', filename='images/Famec_logo_white.png')  }}" alt=""></div>
             </a>
+            <input type="checkbox" id="check">
+            <label for="check" class="menu-icon">
+                <i class='bx bx-menu' id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+            </label>
             <nav class="navigation">
                 <ul>
                     <li><a class="features" href="#features" style="--i:1;" id="dropdown">features <span><i class='bx bx-chevron-down'></i></span></a></li>
@@ -23,19 +28,22 @@
                     <li><a class="solution"  href="#solution" style="--i:3;" id="dropdown">solutions <span><i class='bx bx-chevron-down'></i></span></a></li>
                     <li><a class="nav-btn"  href="#services" style="--i:4;">Services</a></li>
                     <li><a class="nav-btn"  href="#contact" style="--i:5;">Contact</a></li>
+                    <li><a class="button-hw" href="{{ url_for('auth.register') }}"><button class="loginBtn">Get Started</button></a></li>
                 </ul>
             </nav>
-            <a href="{{ url_for('auth.register') }}"><button class="loginBtn">Get Started</button></a>
+            <a class="button-fw" href="{{ url_for('auth.register') }}"><button class="loginBtn">Get Started</button></a>
         </header>
-        <div class="mobile-header">
-            <a class="nav-btn" href="#home">
-                <div class="logo"><img src="{{ url_for('static', filename='images/Famec_logo_white.png')  }}" alt=""></div>
-            </a>
-            <div class="menu-icon">
-                <i class='bx bx-menu'></i>
-            </div>
-        </div>
+
         <div class="dropdown" id="featureDropdown">
+            <div class="mobile-option">
+                <div class="menu-icons menu-icon-back">
+                    <i class='bx bx-chevron-left'></i>
+                    <span>Back</span>
+                </div>
+                <div class="menu-icons menu-icon-close">
+                    <i class="bx bx-x"></i>
+                </div>
+            </div>
             <div class="dropdown-container">
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
