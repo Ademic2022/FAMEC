@@ -147,6 +147,10 @@ LOGIN AND REGISTRATION CASCADING
 END OF LOGIN AND REGISTRATION CASCADING
 ======================================================================================
 */
+/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    
+}
 /* 
 ======================================================================================
 Keyframe Animations

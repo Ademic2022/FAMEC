@@ -1,51 +1,73 @@
-// Get DOM elements
+/*******************************************************************************************/
+// DYNAMIC DISPLAY // 
+/*******************************************************************************************/
 const header = document.querySelector("#header");
 const sections = document.querySelectorAll('section');
 const featureDropdown = document.querySelector('#featureDropdown');
 const solutionDropdown = document.querySelector('#solutionDropdown');
-const navLinks = document.querySelectorAll('a.nav-btn');
-const closeCheckbox = document.getElementById("check");
-const navigation = document.querySelector(".navigation");
 
-// Add scroll event listener
-window.addEventListener('scroll', () => {
-  const navButtons = document.querySelectorAll('.nav-btn');
-
+// Add an event listener for the scroll event
+/*******************************************************************************************/
+// ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
+/*******************************************************************************************/
+window.addEventListener('scroll', function() {
+  var navButtons = document.querySelectorAll('.nav-btn');
+  // var sections = document.querySelectorAll('section');
+  // Check if the page has been scrolled down by 100 pixels or more
   if (window.scrollY >= 100) {
-    header.classList.add("height");
+      header.classList.add("height");
   } else {
-    header.classList.remove("height");
+      header.classList.remove("height");
   }
-
-  sections.forEach((section) => {
+  sections.forEach((event)=>{
     let top = window.scrollY;
-    let offset = section.offsetTop - 150;
-    let height = section.offsetHeight;
+    let offset = event.offsetTop - 150;
+    let height = event.offsetHeight;
 
-    if (top >= offset && top < offset + height) {
-      section.classList.add('show-animate');
-    } else {
-      section.classList.remove('show-animate');
+    if (top >= offset && top < offset + height){
+      event.classList.add('show-animate')
+    }
+    else {
+      event.classList.remove('show-animate')
     }
   });
 });
 
-// Add click event listener to navigation links for smooth scrolling
+/*******************************************************************************************/
+// END OF ACTIVE NAVIGATION LINK TRACKING ON SCROLL // 
+/*******************************************************************************************/
+
+/*******************************************************************************************/
+// PAGE SMOOTH SCROLL // 
+/*******************************************************************************************/
+var navLinks = document.querySelectorAll('a.nav-btn');
+var navbarHeight = 100;
+
 navLinks.forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-
+    var target = document.querySelector(link.getAttribute('href'));
+    
     if (target.getAttribute('id' === 'home')) {
+      // Scroll to the top of the page, leaving space for the navbar
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      const scrollPosition = target.offsetTop - 100; // Adjusted for navbar height
+      // Scroll to the target, accounting for the navbar height
+      var scrollPosition = target.offsetTop - navbarHeight;
       window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
     }
   });
 });
 
-// Initialize Owl Carousel
+
+/*******************************************************************************************/
+// END OF PAGE SMOOTH SCROLL // 
+/*******************************************************************************************/
+
+
+/*******************************************************************************************/
+// OWL CAROUSEL // 
+/*******************************************************************************************/
 $(document).ready(function(){
     $('.owl-carousel').owlCarousel({
         items:1,
@@ -58,49 +80,74 @@ $(document).ready(function(){
         autoplayHoverPause:false
     });
 });
-
-// Feature Navigation Dropdown
+/*******************************************************************************************/
+// END OF OWL CAROUSEL // 
+/*******************************************************************************************/
+/*******************************************************************************************/
+// Feature Navigation Dropdown // 
+/*******************************************************************************************/
 const features = document.querySelectorAll('#dropdown');
-features.forEach((event) => {
-  event.addEventListener('click', () => {
+features.forEach((event)=>{
+  event.addEventListener('click', ()=>{
+    
     if (event.classList.contains('features')) {
       featureDropdown.classList.toggle('showDropdown');
     } else {
       solutionDropdown.classList.toggle('showDropdown');
     }
-
+    
+    // Toggle the chevron icon
     const bx = event.querySelector('.bx');
-    bx.classList.toggle('bx-chevron-up');
+    if (bx.classList.contains('bx-chevron-down')) {
+      bx.classList.toggle('bx-chevron-up');
+    }
 
+    // Close the other dropdown if it's open
     if (event.classList.contains('features') && solutionDropdown.classList.contains('showDropdown')) {
       solutionDropdown.classList.remove('showDropdown');
-      document.querySelector('.solution .bx').classList.remove('bx-chevron-up');
+      const solutionBx = document.querySelector('.solution .bx');
+      solutionBx.classList.remove('bx-chevron-up');
     } else if (!event.classList.contains('features') && featureDropdown.classList.contains('showDropdown')) {
       featureDropdown.classList.remove('showDropdown');
-      document.querySelector('.features .bx').classList.remove('bx-chevron-up');
+      const featureBx = document.querySelector('.features .bx');
+      featureBx.classList.remove('bx-chevron-up');
     }
-  });
-});
+    // mobile functionality for Back icon
+    const backBtn = document.querySelectorAll('.menu-icon-back')
+    backBtn.forEach((e)=>{
+      e.addEventListener('click', ()=>{
+        if (featureDropdown.classList.contains('showDropdown')) {
+          featureDropdown.classList.remove('showDropdown');
+        }
+        else if (solutionDropdown.classList.contains('showDropdown')) {
+          solutionDropdown.classList.remove('showDropdown');
+        }
+      })
+    })
+  })
+})
 
-// Add click event listeners to close buttons
-const closeBtn = document.querySelectorAll('.menu-icon-close');
-closeBtn.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    if (featureDropdown.classList.contains('showDropdown')) {
-      featureDropdown.classList.remove('showDropdown');
-    } else {
-      solutionDropdown.classList.remove('showDropdown');
-    }
-    closeCheckbox.checked = false;
-    navigation.style.height = 0;
-  });
-});
 
-// Add click event listener to close checkbox
-closeCheckbox.addEventListener('click', () => {
-  if (closeCheckbox.checked) {
-    navigation.style.height = '100vh';
-  } else {
-    navigation.style.height = 0;
+const closeBtn = document.querySelectorAll('.menu-icon-close')
+const closeCheckbox = document.getElementById("check");
+const navigation = document.querySelector(".navigation");
+closeCheckbox.addEventListener('click', ()=>{
+  if (closeCheckbox.checked == true){
+    navigation.style.height = '100vh'
+    closeBtn.forEach((e)=>{
+      e.addEventListener('click', ()=>{
+        if (featureDropdown.classList.contains('showDropdown')){
+          featureDropdown.classList.remove('showDropdown');
+        }
+        else{
+          solutionDropdown.classList.remove('showDropdown');
+        }
+        closeCheckbox.checked = false
+        navigation.style.height = 0
+      })
+    })
   }
-});
+  else{
+    navigation.style.height = 0
+  }
+})
