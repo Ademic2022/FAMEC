@@ -3,6 +3,8 @@
 /*******************************************************************************************/
 const header = document.querySelector("#header");
 const sections = document.querySelectorAll('section');
+const featureDropdown = document.querySelector('#featureDropdown');
+const solutionDropdown = document.querySelector('#solutionDropdown');
 
 // Add an event listener for the scroll event
 /*******************************************************************************************/
@@ -17,25 +19,6 @@ window.addEventListener('scroll', function() {
   } else {
       header.classList.remove("height");
   }
-  // sections.forEach(function(section, index) {
-  //   var rect = section.getBoundingClientRect();
-  //   if (rect.top <= (window.innerHeight / 2) && (rect.bottom >= window.innerHeight / 2) || window.scrollY === 0) { 
-  //       navButtons.forEach(function(btn) {
-  //       btn.classList.remove('active');
-  //     });
-  //     if (navButtons[index]) {
-  //       navButtons[index].classList.add('active');
-  //     }
-  //   }
-  // });
-  
-  // Remove active class from all navigation buttons when scrolled back to the top
-  // if (window.scrollY === 0) {
-  //   navButtons.forEach(function(btn) {
-  //     btn.classList.remove('active');
-  //   });
-  // }
-  // ADD ANIMATION ON PAGE SCROLL TO VIEWPORT
   sections.forEach((event)=>{
     let top = window.scrollY;
     let offset = event.offsetTop - 150;
@@ -58,15 +41,20 @@ window.addEventListener('scroll', function() {
 // PAGE SMOOTH SCROLL // 
 /*******************************************************************************************/
 var navLinks = document.querySelectorAll('a.nav-btn');
-navLinks.forEach((links)=>{
-  links.addEventListener('click', (e)=>{
+var navbarHeight = 100;
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
     e.preventDefault();
-    var target = document.querySelector(links.getAttribute('href'));
-    if(target.getAttribute('id' === 'home')){
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-    else{
-      target.scrollIntoView({behavior:'smooth'})
+    var target = document.querySelector(link.getAttribute('href'));
+    
+    if (target.getAttribute('id' === 'home')) {
+      // Scroll to the top of the page, leaving space for the navbar
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Scroll to the target, accounting for the navbar height
+      var scrollPosition = target.offsetTop - navbarHeight;
+      window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
     }
   });
 });
@@ -101,10 +89,7 @@ $(document).ready(function(){
 const features = document.querySelectorAll('#dropdown');
 features.forEach((event)=>{
   event.addEventListener('click', ()=>{
-    const featureDropdown = document.querySelector('#featureDropdown');
-    const solutionDropdown = document.querySelector('#solutionDropdown');
     
-
     if (event.classList.contains('features')) {
       featureDropdown.classList.toggle('showDropdown');
     } else {
@@ -127,5 +112,42 @@ features.forEach((event)=>{
       const featureBx = document.querySelector('.features .bx');
       featureBx.classList.remove('bx-chevron-up');
     }
+    // mobile functionality for Back icon
+    const backBtn = document.querySelectorAll('.menu-icon-back')
+    backBtn.forEach((e)=>{
+      e.addEventListener('click', ()=>{
+        if (featureDropdown.classList.contains('showDropdown')) {
+          featureDropdown.classList.remove('showDropdown');
+        }
+        else if (solutionDropdown.classList.contains('showDropdown')) {
+          solutionDropdown.classList.remove('showDropdown');
+        }
+      })
+    })
   })
+})
+
+
+const closeBtn = document.querySelectorAll('.menu-icon-close')
+const closeCheckbox = document.getElementById("check");
+const navigation = document.querySelector(".navigation");
+closeCheckbox.addEventListener('click', ()=>{
+  if (closeCheckbox.checked == true){
+    navigation.style.height = '100vh'
+    closeBtn.forEach((e)=>{
+      e.addEventListener('click', ()=>{
+        if (featureDropdown.classList.contains('showDropdown')){
+          featureDropdown.classList.remove('showDropdown');
+        }
+        else{
+          solutionDropdown.classList.remove('showDropdown');
+        }
+        closeCheckbox.checked = false
+        navigation.style.height = 0
+      })
+    })
+  }
+  else{
+    navigation.style.height = 0
+  }
 })

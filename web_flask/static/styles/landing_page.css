@@ -790,6 +790,10 @@ MEDIA QUERIES
         width: 100%;
         padding: 0 10px;
     }
+    header a::after,
+    header.height a::after {
+        display: none;
+    }
     header ul {
         display: flex;
         align-items: flex-start;
@@ -823,11 +827,9 @@ MEDIA QUERIES
         z-index: 999;
         background: var(--color-second);
         display: block;
-
     }
-    #check:checked~.navigation {
-        height: 100vh;
-    }
+    
+    
     header .navigation a span {
         margin-left: 260px;
     }
@@ -838,10 +840,6 @@ MEDIA QUERIES
     }
     .navigation li a {
         transform: translateY(-50px);
-    }
-    #check:checked~.navigation li a{
-        transform: translateY(0);
-        transition-delay: calc(.15s * var(--i));
     }
     .button-hw {
         display: block;
