@@ -61,7 +61,6 @@ LOGIN CASCADING
     top: 60px;
     left:0;
     background-color: rgba(0,0,0,0.4);
-    transition: 3s ease-in-out;
 }
 .container{
     display: flex;
@@ -74,6 +73,7 @@ LOGIN CASCADING
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     overflow: hidden;
+    position: relative;
     margin: 0 auto;
     animation: zoomIn 1s ease forwards;
 }
@@ -206,6 +206,7 @@ END OF LOGIN CASCADING
     .container {
         width: 75%;
         height: 50%;
+        top: 10%;
     }
 }
 
