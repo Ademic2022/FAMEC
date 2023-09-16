@@ -4,11 +4,8 @@
 {% endblock %}
 
 {% block page_contents %}
-<div class="ui internally celled grid">
+<div class="ui internally celled grid stackable">
     <div class="row">
-        <!-- <div class="three wide column">
-            <img alt="image1"> 
-        </div> -->
         <div class="thirteen wide column">
             <p>Quick View</p>
             <div class="pusher">
@@ -157,7 +154,7 @@
                     </div>
 
                     <div class="ui top attached menu">
-                        <div class="ui dropdown icon item">
+                        <div class="ui dropdown icon item stackable">
                             <i class="wrench icon"></i>
                             <div class="menu">
                                 <div class="item">
@@ -188,7 +185,7 @@
                         <div class="right menu">
                             <div class="ui right aligned category search item">
                                 <div class="ui transparent icon input">
-                                    <input class="prompt" type="text" placeholder="Search contents...">
+                                    <input class="prompt" type="text" placeholder="Search contents..." style="padding-right: 0 !important;">
                                     <i class="search link icon"></i>
                                 </div>
                                 <div class="results"></div>
@@ -305,16 +302,5 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row">
-      <div class="three wide column">
-        <img alt="img">
-      </div>
-      <div class="ten wide column">
-        <p></p>
-      </div>
-      <div class="three wide column">
-        <img alt="imagess">
-      </div>
-    </div> -->
 </div>
 {% endblock %}
