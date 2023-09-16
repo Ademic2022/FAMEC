@@ -189,14 +189,25 @@ form label {
     position: absolute;
     top: 40%;
     z-index: 99;
-
+}
+form.ui.form.register-form {
+    width: 50%;
 }
 /* 
 ======================================================================================
 END OF LOGIN CASCADING
 ======================================================================================
 */
-
+/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    form.ui.form.register-form {
+        width: 100%;
+    }
+    .container {
+        width: 75%;
+        height: 50%;
+    }
+}
 
 /* 
 ======================================================================================
