@@ -12,7 +12,7 @@
     <title>{% block title %}Base{% endblock %}</title>
 </head>
 <body>
-    <div class="sidebar">
+    <div class="sidebar overlay">
         <div class="logo_details">
             <i class="bx bxl-audible zone"></i>
             <div class="logo_name">FAMEC</div>
@@ -100,64 +100,42 @@
         </ul>
     </div>
     <section class="home-section">
-        <div class="ui inverted segment">
-            {% block section_contents %}{% endblock %}
-                {% with messages = get_flashed_messages(with_categories = true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            {% if category == 'success' %}
-                                <div class="ui success message">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                    {{ message }}
-                                    </div>
-                                    <!-- <p>You may now log-in with the username you have chosen</p> -->
-                                </div>
-                            {% else %}
-                                <div class="ui negative message">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                    {{ message }}
-                                    </div>
-                                    <!-- <p>That offer has expired</p> -->
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-            <div class="ui right floated floating dropdown labeled icon button">
-                <div class="floated">
+        <div class="pusher">
+            <div class="ui menu borderless" style="background-color: #ff91a4;">
+              {% block section_contents %}{% endblock %}
+              <div class="right menu">
+                <div class="item mobile-view">
+                  <a class="item notification-item" href="{{ url_for('views.notification') }}">
+                    <i class="icon bell"></i>
+                    <div class="floating ui circular red label">{{ notification_counter }}</div>
+                  </a>
+                    <a class="item task-item"  href="{{ url_for('views.tasks') }}">
+                        <i class='bx bx-task'></i> 
+                        Task
+                        <div class="floating ui circular teal label">{{ task_counter }}</div>
+                    </a>
+                </div>
+                <div class="ui dropdown item custom-style">
                     <img class="ui avatar image" src="{{ url_for('static', filename='images/avatar.png')  }}">
-                    {% if user.is_authenticated %}
-                        {{ user.firstname }}
-                    {% endif %}
-                </div>
-                <div class="scrolling menu">
-                  <div class="header">
-                    Navigation Menu
-                  </div>
-                  <div class="scrolling menu">
-                    <a class="item" href="{{ url_for('views.notification') }}">
+                    <span class="text profile-text"> <!-- Add a text class for mobile -->
+                        {% if user.is_authenticated %}
+                            {{ user.firstname }}
+                        {% endif %}
+                    </span>
+                    <i class="dropdown icon" style="margin-left: 3px;"></i>
+                    <div class="menu">
+                        <a class="item" href="{{ url_for('views.notification') }}">
                         <i class="icon mail"></i> Notification
-                    </a>
-                    <a class="item" href="{{ url_for('views.settings') }}">
-                        <i class="icon setting"></i> Settings
-                    </a>
-                    <a class="item" href="{{ url_for('auth.logout') }}">
-                        <i class="icon logout"></i> Logout
-                    </a>
-                  </div>
+                        </a>
+                        <a class="item" href="{{ url_for('views.settings') }}">
+                            <i class="icon setting"></i> Settings
+                        </a>
+                        <a class="item" href="{{ url_for('auth.logout') }}">
+                            <i class="icon logout"></i> Logout
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="ui right floated compact menu">
-                <a class="item" href="{{ url_for('views.notification') }}">
-                  <i class="icon mail"></i> Notification
-                  <div class="floating ui circular red label">{{ notification_counter }}</div>
-                </a>
-                <a class="item"  href="{{ url_for('views.tasks') }}">
-                    <i class='bx bx-task'></i> Tasks
-                    <div class="floating ui circular teal label">{{ task_counter }}</div>
-                </a> 
+              </div>
             </div>
         </div>
     </section>
