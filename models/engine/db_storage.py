@@ -101,7 +101,7 @@ class DBStorage:
         cls = getattr(module, class_name)
 
         session = self.__create_session()
-        query = session.query(cls).filter_by(family_id=id).all()
+        query = session.query(cls).filter_by(family_id=id, status=0).all()
         
         count = len(query)  # count the objects in the list
         return count
