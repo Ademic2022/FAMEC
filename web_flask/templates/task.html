@@ -1,9 +1,6 @@
 {% extends "base.html" %}{% block title %}Task{% endblock %}
-{% block section_contents %}
+{% block section_title %}Tasks{% endblock %}
 {% block task_css %} <link rel="stylesheet" href="{{ url_for('static', filename='styles/task.css')  }}"> {% endblock %}
-    <!-- <div class="text">Tasks</div> -->
-    <a class="item">Tasks</a>
-{% endblock %}
 
 {% block page_contents %}
 <div class="ui top attached menu">
