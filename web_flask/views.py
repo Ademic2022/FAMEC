@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, url_for, request, flash, redirect, jsonify
+from flask import Blueprint, render_template, url_for, request, flash, redirect, jsonify, current_app
 from flask_login import login_required, current_user
 from models import storage
 from models.task import Task
 from models.notification import Notification
-import json
-from werkzeug.routing import UUIDConverter
-from .context_processors import inject_globals
+import json, uuid, os
+from datetime import datetime
+from .functions import inject_globals, allowed_file
 
 views = Blueprint('views', __name__)
 @views.context_processor
@@ -28,9 +28,9 @@ def landing_page():
 def dashboard():
     # Assuming you have a datetime field named 'created_at' in your Task model
     user = current_user
-    user_tasks = user.tasks
-    recent_tasks = user_tasks[:3]  
-    
+    tasks = storage.get_task(user.family_id)
+    recent_tasks = tasks
+
     return render_template('dashboard.html', user=user, recent_tasks=recent_tasks)
 
 @views.route('/users')
@@ -98,12 +98,8 @@ def tasks():
 @views.route('/notification')
 @login_required
 def notification():
-    profile_image = [
-        url_for('static', filename='images/avatar.png')
-    ]
-    user_id = current_user.id
-    notifications = storage.get_notifications(user_id)
-    return render_template('notification.html', user = current_user, profile_image=profile_image, notifications=notifications)
+    
+    return render_template('notification.html', user = current_user)
 
 @views.route('/events')
 @login_required
@@ -113,22 +109,14 @@ def events():
 @views.route('/family')
 @login_required
 def family():
-    profile_image = [
-        url_for('static', filename='images/avatar.png')
-    ]
-    user_family_id = current_user.family_id
-    families = storage.get_all_families(user_family_id)
-    return render_template('family.html', user = current_user, image=profile_image, families=families)
+    
+    return render_template('family.html', user = current_user)
 
 @views.route('/settings')
 @login_required
 def settings():
-    profile_image = [
-        url_for('static', filename='images/avatar.png')
-    ]
-    user_family_id = current_user.family_id
-    family_name = storage.find_family_name(user_family_id)
-    return render_template('settings.html', user = current_user, image=profile_image, family=family_name)
+    
+    return render_template('settings.html', user = current_user)
 
 @views.route('/delete-task', methods=['POST'])
 def delete_task():
@@ -186,6 +174,7 @@ def update_task(task_id):
         task.priority = priority
         task.due_date = due_date
         task.status = status
+        task.updated_at = datetime.utcnow()
         
         # Save the updated task
         storage.update(task)
@@ -203,3 +192,30 @@ def update_task(task_id):
     }
     
     return jsonify(task_data)
+
+@views.route("/uploads", methods=["POST"])
+def uploads():
+    if request.method == "POST" and "photo" in request.files:
+        photo = request.files["photo"]
+        if photo and allowed_file(photo.filename):
+            # Generate a unique filename
+            unique_filename = str(uuid.uuid4())[:8] + os.path.splitext(photo.filename)[-1]
+
+            # Save the uploaded file with the unique filename
+            file_path = current_app.config["UPLOADED_PHOTOS_DEST"]
+            if not os.path.exists(file_path):
+                os.makedirs(file_path)
+            photo_path = os.path.join(file_path, unique_filename)
+            photo.save(photo_path)
+
+            # Save the filename in the database
+            user_id = current_user.id
+            user = storage.find_user_by_id(user_id)  # Retrieve the user by ID
+            if user:
+                user.profile_img = unique_filename  # Update the profile_img field
+                storage.save()  # Commit changes
+                flash('Image successfully uploaded', category='success')
+                return redirect(url_for('views.settings'))
+        else:
+            flash('Image type not allowed', category='error')
+    return redirect(url_for('views.settings'))
