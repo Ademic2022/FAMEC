@@ -38,6 +38,10 @@ LOGIN CASCADING
 }
 #header h3 {
     font-family: var(--font-default);
+    margin-top: 3px;
+}
+#header img {
+    display: flex;
 }
 .header-title h1 {
     text-align: center;
