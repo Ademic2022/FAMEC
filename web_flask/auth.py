@@ -10,13 +10,6 @@ import re
 
 auth = Blueprint('auth', __name__)
 
-# def generate_random_id(length=8):
-#     characters = string.ascii_letters + string.digits
-#     random_id = ''.join(random.choices(characters, k=length))
-#     return random_id
-# random_id = generate_random_id()
-
-
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -141,7 +134,6 @@ def register():
                     )
 
                     # Query the database to get the selected family
-                    # selected_family = Family.query.get(family_id)
                     selected_family = storage.get_family_by_id(family_id)
                     if selected_family:
                         
