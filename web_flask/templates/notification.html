@@ -5,12 +5,12 @@
   <!-- Page Contents -->
     <div class="ui fluid padded container segment">
         <h3 class="dividing">Recent Notifications</h3>
-        {% if notifications %}
-            {% for notification in notifications %}
+        {% if user.received_notifications %}
+            {% for notification in user.received_notifications %}
                 <div class="ui comments">
                     <div class="comment">
                         <a class="avatar">
-                            <img src="{{ profile_image[0] }}">
+                            <img src="{{ url_for('static', filename='uploads/' + notification.sender.profile_img) }}">
                         </a>
                         <div class="content">
                             <a class="author" href="{{ url_for('views.tasks') }}">{{ notification.sender.firstname|capitalize }} {{ notification.sender.lastname|capitalize }}</a>
