@@ -1,6 +1,6 @@
 // Function to handle the "Add New Task" modal
 $(function() {
-    $("#new_task").click(function() {
+    $(".new_tasks").click(function() {
         $(".new_task").modal('show');
     });
 
