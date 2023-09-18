@@ -37,7 +37,7 @@ header {
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, .1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(2px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -917,7 +917,9 @@ MEDIA QUERIES
     .extend-dropdown-title h4 {
         margin-top: 0;
     }
-
+    .owl-dots {
+        bottom: 5px;
+    }
 
     
     .section-content {
@@ -927,17 +929,18 @@ MEDIA QUERIES
         height: 60vh;
     }
     .section-content .section-article {
-        padding: 20px; /* Add padding to center content vertically */
-        text-align: center; /* Center align text */
+        padding: 20px; 
+        text-align: center; 
     }
 
     .section-content .section-article h1 {
-        font-size: 30px; /* Reduce font size for smaller screens */
+        font-size: 30px; 
     }
 
     .section-content .section-article p {
-        font-size: 16px; /* Reduce font size for smaller screens */
-        width: 100%; /* Make text width full width */
+        font-size: 16px;
+        line-height: 25px;
+        width: 100%; 
     }
 
     .section-content .section-article button {
