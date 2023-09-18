@@ -8,11 +8,11 @@
           <i class="star icon"></i>
           To make the entire content of an item link, check out the link variation below
         </div>
-        {% for family in families %}
+        {% for family in user.family.members %}
         <div class="ui items">
           <div class="item">
             <a class="ui tiny image">
-              <img src="{{image[0]}}">
+              <img src="{{ url_for('static', filename='uploads/' + family.profile_img) }}">
             </a>
             <div class="content">
               <a class="header">{{ family.firstname|capitalize + ' ' + family.lastname|capitalize }}</a>
