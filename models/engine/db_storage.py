@@ -131,10 +131,18 @@ class DBStorage:
         session = self.__create_session()
         query = session.query(Task).filter_by(id=id).first()
         return query
+    # def get_task(self, id):
+    #     from models.task import Task
+    #     session = self.__create_session()
+    #     query = session.query(Task).filter_by(family_id=id).all()
+    #     return query
     def get_task(self, id):
         from models.task import Task
         session = self.__create_session()
-        query = session.query(Task).filter_by(family_id=id).all()
+        query = session.query(Task).filter_by(
+            family_id=id,
+            status=0
+            ).order_by(Task.created_at.desc()).limit(3).all()
         return query
     
     def get_all_families(self, id):
