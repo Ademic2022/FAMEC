@@ -1012,6 +1012,9 @@ MEDIA QUERIES
     .contact-container{
         flex-direction: column-reverse;
     }
+    .connect .icon-share{
+        margin-top: 20px;  /*contact us icon*/
+    }
 }
 /* 
 ======================================================================================
