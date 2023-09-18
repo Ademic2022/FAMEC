@@ -1,4 +1,5 @@
-{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
 {% block section_title %}Dashboard{% endblock %}
 
 {% block page_contents %}
@@ -30,7 +31,9 @@
                                                     <i class="large tasks icon"></i>
                                                     <div class="content">
                                                     <a class="header">{{ task.title }}</a>
-                                                    <div class="description">By Mum</div>
+                                                    <div class="description">By 
+                                                        {% if current_user.username == task.user.username %}You{% else %}{{ task.user.username|capitalize }}{% endif %}
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
