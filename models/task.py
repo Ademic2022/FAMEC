@@ -1,9 +1,7 @@
 from models.base_model import BaseModel, Base
 import models
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, Enum, ForeignKey, Integer
-
-from enum import Enum as PythonEnum
+from sqlalchemy import Column, String, ForeignKey, Integer
 
 class Task(BaseModel, Base):
     """ Task model to describe the tasks for users"""
