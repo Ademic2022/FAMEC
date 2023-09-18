@@ -828,9 +828,11 @@ MEDIA QUERIES
         background: var(--color-second);
         display: block;
     }
-    
-    header .navigation a span {
-        margin-left: 260px;
+    header .navigation a.nav-btn {
+        margin-left: 10px;
+    }
+    #dropdown{
+        justify-content: space-between;
     }
     .navigation li{
         margin-right: 20px;
