@@ -43,7 +43,7 @@ header {
     align-items: center;
     padding: 20px 40px;
     z-index: 1000;
-    height: 100px;
+    height: 80px;
 }
 
 header.height {
@@ -127,7 +127,7 @@ FEATURE DROPDOWN
     background-color: #fff;
     position: fixed;
     width: 100%;
-    top: 6em;
+    top: 5em;
     z-index: 1000;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -420,8 +420,8 @@ LOGO
 .logo img {
     font-size: 2em;
     user-select: none;
-    width: 3.5em;
-    height: 3.5em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
     animation: slideRight 1s ease forwards;
 }
