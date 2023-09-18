@@ -353,8 +353,7 @@ p.left_menu {
   right: 0;
   top:90%;
   z-index: 99;
-  text-align: center;
-  width: 25%;
+  width: 35%;
 }
 
 .ui.inverted.vertical.footer.segment {
@@ -424,6 +423,10 @@ div.floating.ui.circular.red.label {
   div.floating.ui.circular.red.label {
     top: -8px !important;
     right: -10px !important;
+  }
+  /* Flash messages */
+  .ui.success.message, .ui.negative.message {
+    width: 100%;
   }
 }
 
