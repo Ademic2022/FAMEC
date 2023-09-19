@@ -18,7 +18,7 @@ class DBStorage:
         db_password = getenv('FAMEC_MYSQL_PWD')
         database = getenv('FAMEC_MYSQL_DB')
         host = getenv('FAMEC_MYSQL_HOST')
-        env = getenv('FAMEC_ENV')
+        env = getenv('FAMEC_TYPE_STORAGE')
 
         self.__engine = create_engine(
             f'mysql+mysqldb://{user}:{db_password}@{host}/{database}',

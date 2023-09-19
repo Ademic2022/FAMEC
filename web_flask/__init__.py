@@ -2,8 +2,6 @@ from flask import Flask
 from flask_login import LoginManager
 from datetime import timedelta
 from models import storage
-from flask_migrate import Migrate
-
 
 def create_app():
     app = Flask(__name__)
@@ -22,7 +20,7 @@ def create_app():
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    migrate = Migrate(app, storage)
+    
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
