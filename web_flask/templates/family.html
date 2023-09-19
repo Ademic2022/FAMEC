@@ -1,19 +1,26 @@
 {% extends "base.html" %}{% block title %}Family{% endblock %}
-{% block section_contents %}
-    <div class="text">Family Members</div>
-{% endblock %}
+{% block section_title %}Family{% endblock %}
+
 {% block page_contents %}
   <!-- Page Contents -->
     <div class="ui fluid padded container segment">
-        {% for family in families %}
-        <div class="ui list">
-            <div class="item">
-              <img class="ui avatar image" src="{{ image[0] }}">
-              <div class="content">
-                <a class="header">{{ family.firstname }} {{family.lastname}}</a>
-                <div class="description">Last seen watching <a><b>Arrested Development</b></a> just now.</div>
+        <div class="ui yellow message">
+          <i class="star icon"></i>
+          To make the entire content of an item link, check out the link variation below
+        </div>
+        {% for family in user.family.members %}
+        <div class="ui items">
+          <div class="item">
+            <a class="ui tiny image">
+              <img src="{{ url_for('static', filename='uploads/' + family.profile_img) }}">
+            </a>
+            <div class="content">
+              <a class="header">{{ family.firstname|capitalize + ' ' + family.lastname|capitalize }}</a>
+              <div class="description">
+                <p>Veronika Ossi is a set designer living in New York who <a>enjoys</a> kittens, music, and partying.</p>
               </div>
             </div>
+          </div>
         </div>
         {% endfor %}
     </div>

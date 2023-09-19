@@ -1,8 +1,6 @@
 {% extends "base.html" %}{% block title %}Task{% endblock %}
-{% block section_contents %}
+{% block section_title %}Tasks{% endblock %}
 {% block task_css %} <link rel="stylesheet" href="{{ url_for('static', filename='styles/task.css')  }}"> {% endblock %}
-    <div class="text">Tasks</div>
-{% endblock %}
 
 {% block page_contents %}
 <div class="ui top attached menu">
@@ -10,7 +8,7 @@
         <i class="list icon"></i>
         <div class="menu">
             <div class="item">
-            <span class="text" id="new_task">New Task</span>
+            <span class="text new_tasks">New Task</span>
             </div>
             <div class="item">
                 Sort By
@@ -24,7 +22,7 @@
           <i class="search link icon"></i>
         </div>
         <div class="results"></div>
-      </div>
+    </div>
     </div>
 </div>
 <div class="ui bottom attached segment">
@@ -32,8 +30,14 @@
     <table class="ui sortable celled table">
         <thead>
             <tr>
+              <th colspan="7">Active Tasks</th>
+            </tr>
+          </thead>
+        <thead>
+            <tr>
                 <th>Task Title</th>
                 <th>Task Description</th>
+                <th>Created By</th>
                 <th>Date Created</th>
                 <th>Due Date</th>
                 <th>Status</th>
@@ -46,7 +50,10 @@
             <tr>
                 <td data-label="title">{{ task.title }}</td>
                 <td data-label="description">{{ task.description }}</td>
-                <td data-label="date_created">{{ task.created_at }}</td>
+                <td data-label="created_by">
+                    {% if current_user.username == task.user.username %}You{% else %}{{ task.user.username|capitalize }}{% endif %}
+                </td>
+                <td data-label="date_created">{{ task.created_at.strftime('%b %d, %Y at %H:%M') }}</td>
                 <td data-label="due_date">{{ task.due_date }}</td>
                 <td data-label="status" 
                 class="{% if task.status == 0 %}
@@ -66,7 +73,9 @@
         {% if user.tasks|length == 0 %}
         <tr>
             <td colspan="6">
-                No tasks available. <span class="text clickable" id="new_task"><a>Click here</a></span> to add a new task.
+                No tasks available. 
+                <span class="text clickable new_tasks"><a href="#">Click here</a></span> 
+                to add a new task.
             </td>
         </tr>
         {% endif %}
@@ -90,30 +99,33 @@
             </tr>
           </thead>
         <tbody>
-            {% for task in family_tasks %}
-                {% if task and task.status == 1 %}
+            {% if family_tasks %}
+                {% for task in family_tasks %}
+                    {% if task and task.status == 1 %}
+                        <tr>
+                            <td>{{ task.title }}</td>
+                            <td>{{ task.updated_at.strftime('%b %d, %Y at %H:%M') }}</td>
+                            <td 
+                                class="{% if task.status == 1 %}
+                                success_color
+                                {% endif %}">{% if task.status == 1 %}COMPLETED{% endif %}</td>
+                            <td data-label="status">
+                                <div class="ui buttons">
+                                    <button class="ui positive button active update-task-button" data-task-id="{{ task.id }}">Update</button>
+                                    <button class="ui negative button delete-task-button" data-task-id="{{ task.id }}">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
                 <tr>
-                    <td>{{ task.title }}</td>
-                    <td>{{ task.updated_at }}</td>
-                    <td 
-                        class="{% if task.status == 1 %}
-                        success_color
-                        {% endif %}">{% if task.status == 1 %}COMPLETED{% endif %}</td>
-                    <td data-label="status">
-                        <div class="ui buttons">
-                            <button class="ui positive button active update-task-button" data-task-id="{{ task.id }}">Update</button>
-                            <button class="ui negative button delete-task-button" data-task-id="{{ task.id }}">Delete</button>
-                        </div>
+                    <td colspan="6">
+                        No task created yet. 
+                        <span class="text clickable new_tasks"><a href="#">Click here</a></span> 
+                        to assign a new task
                     </td>
                 </tr>
-                {% endif %}
-            {% endfor %}
-            {% if family_tasks|length == 0 %}
-            <tr>
-                <td colspan="6">
-                    No Completed task yet. <span class="text clickable" id="new_task"><a>Click here</a></span> to add a new task.
-                </td>
-            </tr>
             {% endif %}
         </tbody>
         <tfoot>
@@ -142,9 +154,27 @@
     <div class="header">Add New Task</div>
     <div class="content">
         <form class="ui form" method="POST" action="{{ url_for('views.tasks') }}">
-            <div class="field">
-                <label>Task Title</label>
-                <input type="text" name="task_title" placeholder="Task Title...">
+            <div class="two fields">
+                <div class="field">
+                    <label>Task Title</label>
+                    <input type="text" name="task_title" placeholder="Task Title...">
+                </div>
+                <div class="field">
+                    <label>Assign to:</label>
+                    <div class="ui fluid multiple search selection dropdown">
+                        <input type="hidden" name="assigned_to">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Family Members</div>
+                        <div class="menu">
+                            {% for family in current_user.family.members %}
+                                <div class="item" data-value="{{ family.username }}" data-text="{{ family.username }}">
+                                    <img class="ui mini avatar image" src="{{ url_for('static', filename='uploads/' + family.profile_img) }}">
+                                    {{ family.username|capitalize }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="field">
                 <label>Description</label>
@@ -197,9 +227,27 @@
     <div class="content">
         <form class="ui form" action="{{ url_for('views.tasks') }}">
             <input type="text" name="task_id" hidden>
-            <div class="field">
-                <label>Task Title</label>
-                <input type="text" name="task_title" placeholder="Task Title...">
+            <div class="two fields">
+                <div class="field">
+                    <label>Task Title</label>
+                    <input type="text" name="task_title" placeholder="Task Title...">
+                </div>
+                <div class="field">
+                    <label>Assign to:</label>
+                    <div class="ui fluid multiple search selection dropdown">
+                        <input type="hidden" name="assigned_to">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Saved Contacts</div>
+                        <div class="menu">
+                            {% for family in current_user.family.members %}
+                                <div class="item" data-value="{{ family.username }}" data-text="{{ family.username }}">
+                                    <img class="ui mini avatar image" src="{{ url_for('static', filename='uploads/' + family.profile_img) }}">
+                                    {{ family.username|capitalize }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="field">
                 <label>Description</label>

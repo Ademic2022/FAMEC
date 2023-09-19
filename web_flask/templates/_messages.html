@@ -1,0 +1,23 @@
+{% with messages = get_flashed_messages(with_categories = true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'success' %}
+                <div class="ui success message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                    {{ message }}
+                    </div>
+                    <!-- <p>You may now log-in with the username you have chosen</p> -->
+                </div>
+            {% else %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                    {{ message }}
+                    </div>
+                    <!-- <p>That offer has expired</p> -->
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}

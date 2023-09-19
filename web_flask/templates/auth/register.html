@@ -2,7 +2,7 @@
 {% block title %}FAMEC/Register{% endblock %}
 {% block register %}
 <div class="ui raised very padded text segment" style="background-color: #ff91a4;">
-    <form class="ui form" style="width: 50%;" action="{{ url_for('auth.register') }}" method="POST">
+    <form class="ui form register-form" action="{{ url_for('auth.register') }}" method="POST">
         <h2 class="ui dividing header centered">Register</h2>
         {% with messages = get_flashed_messages(with_categories = true) %}
           {% if messages %}
@@ -58,7 +58,7 @@
         </div>
         <div class="field">
           <label>Address</label>
-          <div class="fields">
+          <div class="two fields">
             <div class="twelve wide field">
               <input type="text" name="address" placeholder="Street Address" value="{% if user_data %}{{ user_data['address'] }}{% endif %}">
             </div>

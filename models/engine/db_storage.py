@@ -18,7 +18,7 @@ class DBStorage:
         db_password = getenv('FAMEC_MYSQL_PWD')
         database = getenv('FAMEC_MYSQL_DB')
         host = getenv('FAMEC_MYSQL_HOST')
-        env = getenv('FAMEC_ENV')
+        env = getenv('FAMEC_TYPE_STORAGE')
 
         self.__engine = create_engine(
             f'mysql+mysqldb://{user}:{db_password}@{host}/{database}',
@@ -101,7 +101,7 @@ class DBStorage:
         cls = getattr(module, class_name)
 
         session = self.__create_session()
-        query = session.query(cls).filter_by(family_id=id).all()
+        query = session.query(cls).filter_by(family_id=id, status=0).all()
         
         count = len(query)  # count the objects in the list
         return count
@@ -131,10 +131,14 @@ class DBStorage:
         session = self.__create_session()
         query = session.query(Task).filter_by(id=id).first()
         return query
+
     def get_task(self, id):
         from models.task import Task
         session = self.__create_session()
-        query = session.query(Task).filter_by(family_id=id).all()
+        query = session.query(Task).filter_by(
+            family_id=id,
+            status=0
+            ).order_by(Task.created_at.desc()).limit(3).all()
         return query
     
     def get_all_families(self, id):
@@ -154,22 +158,7 @@ class DBStorage:
         session = self.__create_session()
         query = session.query(Notification).filter_by(recipient_id=id).all()
         return query
-
-    # def find_item_by_id(self, model_name, id):
-    #     try:
-    #         # Attempt to import the model dynamically
-    #         model_module = __import__(f'models.{model_name}', fromlist=[model_name])
-    #         model_class = getattr(model_module, model_name)
-    #     except ImportError:
-    #         return None  # Model import failed
-
-    #     session = self.__create_session()
-    #     query = session.query(model_class).filter_by(id=id).first()
-    #     # USAGE
-    #     # user = find_item_by_id('User', user_id)
-    #     # task = find_item_by_id('Task', task_id)
-    #     return query
-
+    
     def reload(self):
         Base.metadata.create_all(self.__engine)
         self.__create_session()
