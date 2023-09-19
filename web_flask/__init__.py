@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from datetime import timedelta
 from models import storage
+from flask_migrate import Migrate
 
 
 def create_app():
@@ -15,12 +16,13 @@ def create_app():
     app.config['UPLOADS_DEFAULT_DEST'] = 'web_flask/static/uploads/'  # Set the default destination
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+
     from .views import views
     from .auth import auth
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-
+    migrate = Migrate(app, storage)
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
