@@ -5,8 +5,9 @@
 Home Management System(Family Management System or FamilyHub) is an all-in-one task management app designed to simplify and organize the daily responsibilities of a household. It's a centralized platform where family members can coordinate, assign, and track various tasks and activities, ensuring a well-managed and harmonious home environment.
 
 ## previews
-![preview 1](https://github.com/Ademic2022/FAMEC/blob/main/previews/hmaimg.png)
-![preview 2](https://github.com/Ademic2022/FAMEC/blob/main/previews/hmamobile.png)
+![preview 1](https://github.com/Ademic2022/Ademic2022/blob/main/previews/hmaimg.png)
+
+![preview 2](https://github.com/Ademic2022/Ademic2022/blob/main/previews/hmamobile.png)
 
 ## Key Features:
 
