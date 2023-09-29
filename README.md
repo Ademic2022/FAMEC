@@ -6,7 +6,7 @@ Home Management System(Family Management System or FamilyHub) is an all-in-one t
 
 ## previews
 ![preview 1](https://github.com/Ademic2022/FAMEC/blob/main/previews/hmaimg.png)
-![preview 2]([/previews/hmamobile.png](https://github.com/Ademic2022/FAMEC/blob/main/previews/hmamobile.png))
+![preview 2](https://github.com/Ademic2022/FAMEC/blob/main/previews/hmamobile.png)
 
 ## Key Features:
 
