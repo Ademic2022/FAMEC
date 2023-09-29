@@ -10,7 +10,7 @@ Home Management System(Family Management System or FamilyHub) is an all-in-one t
 
 ## Key Features:
 
-# User Profiles: # Each family member has a profile within the app, allowing for personalized task assignments, preferences, and notifications.
+/* User Profiles: */ Each family member has a profile within the app, allowing for personalized task assignments, preferences, and notifications.
 
 # Task Categories: Organize tasks into categories such as cleaning, cooking, shopping, kids' activities, appointments, and more. Users can add custom categories as needed.
 
@@ -44,6 +44,6 @@ Home Management System(Family Management System or FamilyHub) is an all-in-one t
 
 
 
-Summary
+## Summary
 
 Home Management System is designed to enhance communication, coordination, and collaboration within the household. The app can be available on both mobile and web platforms, making it easy for family members to access and use across various devices.
